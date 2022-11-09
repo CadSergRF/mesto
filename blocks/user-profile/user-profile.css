@@ -1,0 +1,7 @@
+.user-profile {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px auto 150px;
+  gap: 30px;
+  align-items: center;
+}

@@ -1,0 +1,6 @@
+.user-profile__info-wrapper {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  margin-bottom: 16px;
+}

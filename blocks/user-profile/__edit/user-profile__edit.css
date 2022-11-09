@@ -1,0 +1,11 @@
+.user-profile__edit {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #fff;
+  background-image: url(../../../img/onEditBtn.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-color: transparent;
+}

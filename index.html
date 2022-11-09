@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,34 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="root">>
 
-    <header class="header root__container">
-        <img class="logo" src="./img/logo.svg" alt="logo">
-    </header>
+  <header class="header root__container">
+    <img class="logo" src="./img/logo.svg" alt="Логотип">
+  </header>
 
-    <main class="content root__container">
+  <main class="root__container">
+    <section class="user-profile content__user-profile">
+      <img class="user-profile__photo" src="./img/avatar.jpg" alt="Аватар">
+      <div>
+        <div class="user-profile__info-wrapper">
+          <h1 class="user-profile__name">Жак-Ив Кусто</h1>
+          <button class="user-profile__edit"></button>
+        </div>
+        <p class="user-profile__job">Исследователь океана</p>
+      </div>
+      <button class="places__add"></button>
+    </section>
+    <section class="places">
+      
+    </section>
+  </main>
 
-    </main>
-
-    <footer class="footer root__container">
-      <p>&copy; 2020 Mesto Russia</p>
-    </footer>
+  <footer class="footer root__container">
+    <p class="footer__text">&copy; 2020 Mesto Russia</p>
+  </footer>
 
 </body>
+
 </html>
