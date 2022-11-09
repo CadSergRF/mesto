@@ -3,9 +3,16 @@
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
+  border-radius: 2px;
   background-image: url(../../../img/onAddBtn.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 22px;
   background-color: transparent;
+  transition: opacity .2s ease-in-out;
+  cursor: pointer;
+}
+
+.places__add:hover {
+  opacity: .6;
 }

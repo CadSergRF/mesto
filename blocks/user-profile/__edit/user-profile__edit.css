@@ -8,4 +8,10 @@
   background-repeat: no-repeat;
   background-size: 10px;
   background-color: transparent;
+  transition: opacity .2s ease-in-out;
+  cursor: pointer;
+}
+
+.user-profile__edit:hover {
+  opacity: .6;
 }
