@@ -1,5 +1,5 @@
 .place__like {
-  width: 22px;
+  min-width: 22px;
   height: 19px;
   background-image: url(../../../img/icon-like.svg);
   background-position: center center;
