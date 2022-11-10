@@ -1,6 +1,6 @@
-/* * {
+* {
   outline: 1px solid red;
-} */
+}
 
 .root {
   box-sizing: border-box;
@@ -12,10 +12,4 @@
   -moz-osx-font-smoothing: grayscale;
   padding: 45px 0 60px;
   position: relative;
-}
-
-@media screen and (max-width: 1000px) {
-  .root {
-    padding: 28px 0 36px;
-  }
 }
