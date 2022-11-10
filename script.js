@@ -1,6 +1,6 @@
 let userProfileEdit = document.querySelector('.user-profile__edit');
 let popupCloseBtn = document.querySelector('.popup__close-btn');
-let popupSave = document.querySelector('.popup__save');
+let formEditProfile = document.getElementById('popup__form');
 
 //Фунция отображения лайков
 function likes() {
@@ -15,16 +15,37 @@ function likes() {
 // Открытие и закрытие PopUp
 function openPopup() {
     let openPopup = document.querySelector('.popup');
+    let popupName = document.querySelector('.popup__input_name');
+    let userName = document.querySelector('.user-profile__name');
+    let popupJob = document.querySelector('.popup__input_job');
+    let userJob = document.querySelector('.user-profile__job');
+    console.log('форма запустилась');
     openPopup.classList.add('popup_opened');
-}
+    // Заполняем поля текущим значением
+    popupName.value = userName.textContent;
+    popupJob.value = userJob.textContent;
+};
+
 function closePopup() {
     let close = document.querySelector('.popup');
     close.classList.remove('popup_opened');
+};
+
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+    let popupName = document.querySelector('.popup__input_name');
+    let userName = document.querySelector('.user-profile__name');
+    let popupJob = document.querySelector('.popup__input_job');
+    let userJob = document.querySelector('.user-profile__job');
+
+    userName.textContent = popupName.value;
+    userJob.textContent = popupJob.value;
+
+    closePopup();
 }
 
 
-
 likes();
+formEditProfile.addEventListener('submit', formSubmitHandler);
 userProfileEdit.addEventListener('click', openPopup);
 popupCloseBtn.addEventListener('click', closePopup);
-popupSave.addEventListener('click', closePopup);
