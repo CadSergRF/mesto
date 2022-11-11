@@ -19,7 +19,7 @@ function openPopup() {
     let userName = document.querySelector('.user-profile__name');
     let popupJob = document.querySelector('.popup__input_job');
     let userJob = document.querySelector('.user-profile__job');
-    console.log('форма запустилась');
+    
     openPopup.classList.add('popup_opened');
     // Заполняем поля текущим значением
     popupName.value = userName.textContent;

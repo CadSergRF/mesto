@@ -13,32 +13,35 @@
 
   <header class="header root__container">
     <img class="logo" src="./img/logo.svg" alt="Логотип">
-
-    <div class="popup">
-      <div class="popup__container">
-        <button class="popup__close-btn"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form action="" id="popup__form">
-          <input type="text" placeholder="" class="popup__input popup__input_name">
-          <input type="text" placeholder="" class="popup__input popup__input_job">
-          <button class="popup__save" type="submit">Сохранить</button>
-        </form>
-      </div>
-    </div>
   </header>
 
+ <!-- Попап -->
+ <article class="popup">
+  <div class="popup__container">
+    <button class="popup__close-btn"></button>
+    <h3 class="popup__title">Редактировать профиль</h3>
+    <form action="" id="popup__form">
+      <input type="text" placeholder="" class="popup__input popup__input_name">
+      <input type="text" placeholder="" class="popup__input popup__input_job">
+      <button class="popup__save" type="submit">Сохранить</button>
+    </form>
+  </div>
+</article>
+
   <main class="root__container">
+<!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
       <img class="user-profile__photo" src="./img/avatar.jpg" alt="Аватар">
-      <div>
-        <div class="user-profile__info-wrapper">
+
+      <div class="user-profile__info-wrapper">
           <h1 class="user-profile__name">Жак-Ив Кусто</h1>
           <button class="user-profile__edit"></button>
+          <p class="user-profile__job">Исследователь океана</p>
         </div>
-        <p class="user-profile__job">Исследователь океана</p>
-      </div>
+      
       <button class="places__add"></button>
     </section>
+<!-- Секция фотографий -->
     <section class="places">
       <article class="place">
         <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Крачаевск">

@@ -1,6 +1,15 @@
 .user-profile__info-wrapper {
-  display: flex;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
   align-items: baseline;
-  margin-bottom: 7px;
+  column-gap: 18px;
+}
+
+@media screen and (max-width:800px) {
+  .user-profile__info-wrapper {
+    margin-bottom: 36px;
+    column-gap: 10px;
+    /* для выравнивания текста по картинке */
+    transform: translateX(14px);
+  }
 }

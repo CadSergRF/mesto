@@ -11,3 +11,13 @@
   left: 50%;
   transform: translate(-50%, 0);
 }
+
+@media screen and (max-width: 800px) {
+  .popup__container {
+    width: 282px;
+    height: 322px;
+    padding: 25px 22px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

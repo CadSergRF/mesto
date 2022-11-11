@@ -15,3 +15,10 @@
 .user-profile__edit:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 800px) {
+  .user-profile__edit {
+    width: 18px;
+    height: 18px;
+  }
+}
