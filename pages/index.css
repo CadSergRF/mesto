@@ -15,9 +15,9 @@
 @import url(../blocks/user-profile/__name/user-profile__name.css);
 @import url(../blocks/user-profile/__job/user-profile__job.css);
 @import url(../blocks/user-profile/__edit/user-profile__edit.css);
+@import url(../blocks/user-profile/__add-place/user-profile__add-place.css);
 
 @import url(../blocks/places/places.css);
-@import url(../blocks/places/__add/places__add.css);
 @import url(../blocks/place/place.css);
 @import url(../blocks/place/__image/place__image.css);
 @import url(../blocks/place/__info/place__info.css);
