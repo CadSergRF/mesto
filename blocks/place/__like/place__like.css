@@ -1,9 +1,11 @@
 .place__like {
-  min-width: 22px;
+  width: 22px;
   height: 19px;
+  padding: 0;
   border: none;
   background-color: transparent;
   background-image: url(../../../img/icon-like.svg);
+  background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
   transition: opacity .2s ease-in-out;
