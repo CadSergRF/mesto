@@ -1,14 +1,25 @@
 .user-profile__job {
+  max-width: 500px;
   margin: 0;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+  .user-profile__job {
+    max-width: calc(100vw - 450px);
+  }
 }
 
 @media screen and (max-width: 800px) {
   .user-profile__job {
+    max-width: calc(80vw - 30px);
     justify-self: center;
     font-size: 14px;
     line-height: 17px;

@@ -20,5 +20,6 @@
 @media screen and (max-width: 800px) {
   .user-profile__add-place {
     width: 100%;
+    background-size: 16px 16px;
   }
 }
