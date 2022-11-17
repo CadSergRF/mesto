@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <title lang="en">Mesto</title>
 </head>
 
 <body class="root">
@@ -15,19 +15,6 @@
     <img class="logo" src="./img/logo.svg" alt="Логотип">
   </header>
 
- <!-- Попап -->
- <article class="popup">
-  <div class="popup__container">
-    <button class="popup__close-btn"></button>
-    <h3 class="popup__title">Редактировать профиль</h3>
-    <form action="#" id="popup__form">
-      <input type="text" placeholder="" class="popup__input popup__input_name">
-      <input type="text" placeholder="" class="popup__input popup__input_job">
-      <button class="popup__save" type="submit">Сохранить</button>
-    </form>
-  </div>
-</article>
-
   <main class="root__container">
 <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
@@ -35,62 +22,76 @@
 
       <div class="user-profile__info-wrapper">
           <h1 class="user-profile__name">Жак-Ив Кусто</h1>
-          <button class="user-profile__edit"></button>
+          <button class="user-profile__edit" type="button" name="editProfileButton"></button>
           <p class="user-profile__job">Исследователь океана</p>
         </div>
       
-      <button class="user-profile__add-place"></button>
+      <button class="user-profile__add-place" type="button" aria-label="Кнопка добавления контента" name="addPlaceButton"></button>
     </section>
 <!-- Секция фотографий -->
     <section class="places" aria-label="Фотографии">
       <article class="place">
-        <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Сентинский храм в районе города Крачаевск">
         <div class="place__info">
           <h2 class="place__title">Карачаевск</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Гора Эльбрус">
         <div class="place__info">
           <h2 class="place__title">Гора Эльбрус</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/dombaj.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/dombaj.jpg" alt="Гора Белалакая на Кавказе">
         <div class="place__info">
           <h2 class="place__title">Домбай</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Гора Эльбрус">
         <div class="place__info">
           <h2 class="place__title">Гора Эльбрус</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/dombaj.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/dombaj.jpg" alt="Гора Белалакая на Кавказе">
         <div class="place__info">
           <h2 class="place__title">Домбай</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Крачаевск">
+        <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Сентинский храм в районе города Крачаевск">
         <div class="place__info">
           <h2 class="place__title">Карачаево-Черкессия</h2>
-          <div class="place__like"></div>
+          <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
     </section>
   </main>
 
   <footer class="footer root__container">
-    <p class="footer__text">&copy; 2020 Mesto Russia</p>
+    <p class="footer__text" lang="en">&copy; 2020 Mesto Russia</p>
   </footer>
+  
+ <!-- Попап -->
+ <article class="popup">
+  <div class="popup__container">
+    <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна редактирования профиля" name="closePopupButton"></button>
+    <h3 class="popup__title">Редактировать профиль</h3>
+    <form action="#" id="popup__form" name="editProfile">
+      <input type="text" placeholder="Ваше имя/ник" class="popup__input popup__input_editProfile_name" name="editProfileName">
+      <input type="text" placeholder="Ваша должность" class="popup__input popup__input_editProfile_job" name="editProFileJob">
+      <button class="popup__save-btn" type="submit" name="saveEditButton">Сохранить</button>
+    </form>
+  </div>
+</article>
+
   <script src="./scripts/script.js"></script>
 </body>
 
