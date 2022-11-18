@@ -1,17 +1,17 @@
 .user-profile__info-wrapper {
   display: grid;
-  grid-template-columns: repeat(2, -webkit-max-content);
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: 294px 1fr;
   align-items: baseline;
   -moz-column-gap: 18px;
        column-gap: 18px;
+  row-gap: 8px;
 }
 
 @media screen and (max-width:800px) {
   .user-profile__info-wrapper {
     margin-bottom: 36px;
     -moz-column-gap: 10px;
-         column-gap: 10px;
+    column-gap: 10px;
   }
 }
 

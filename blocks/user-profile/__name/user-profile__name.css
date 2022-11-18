@@ -1,5 +1,5 @@
 .user-profile__name {
-  width: 327px;
+  width: 290px;
   margin: 0;
   font-style: normal;
   font-weight: 500;
@@ -15,6 +15,7 @@
   .user-profile__name {
     font-size: 27px;
     line-height: 33px;
+    text-align: center;
   }
 }
 
