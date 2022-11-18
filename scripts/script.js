@@ -9,7 +9,7 @@ let userJob = document.querySelector('.user-profile__job');
 
 // Открытие и закрытие PopUp
 function openPopup() {
-    let openPopup = document.querySelector('.popup'); 
+    let openPopup = document.querySelector('.popup');
     // если переменную openPopup вынести из функии то код перестает работать. Непонимаю почему.
 
     openPopup.classList.add('popup_opened');
