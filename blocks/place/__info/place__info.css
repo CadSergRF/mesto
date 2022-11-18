@@ -10,6 +10,6 @@
 
 @media screen and (max-width: 800px) {
   .place__info {
-  padding: 25px 15px 31px 21px;
+    padding: 25px 15px 31px 21px;
   }
 }
