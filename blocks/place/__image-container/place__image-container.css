@@ -1,0 +1,10 @@
+.place__image-container {
+  width: 100%;
+  position: relative;
+}
+
+.place__image-container::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}

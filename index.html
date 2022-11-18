@@ -16,57 +16,70 @@
   </header>
 
   <main class="root__container">
-<!-- профиль пользователя -->
+    <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
       <img class="user-profile__photo" src="./img/avatar.jpg" alt="Аватар">
 
       <div class="user-profile__info-wrapper">
-          <h1 class="user-profile__name">Жак-Ив Кусто</h1>
-          <button class="user-profile__edit" type="button" name="editProfileButton"></button>
-          <p class="user-profile__job">Исследователь океана</p>
-        </div>
+        <h1 class="user-profile__name">Жак-Ив Кусто</h1>
+        <button class="user-profile__edit" type="button" name="editProfileButton"></button>
+        <p class="user-profile__job">Исследователь океана</p>
+      </div>
 
-      <button class="user-profile__add-place" type="button" aria-label="Кнопка добавления контента" name="addPlaceButton"></button>
+      <button class="user-profile__add-place" type="button" aria-label="Кнопка добавления контента"
+        name="addPlaceButton"></button>
     </section>
-<!-- Секция фотографий -->
+    <!-- Секция фотографий -->
     <section class="places" aria-label="Фотографии">
       <article class="place">
-        <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Сентинский храм в районе города Крачаевск">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/Karachaevsk.jpg" alt="Сентинский храм в районе города Крачаевск">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Карачаевск</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Гора Эльбрус">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Гора Эльбрус">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Гора Эльбрус</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/dombaj.jpg" alt="Гора Белалакая на Кавказе">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/dombaj.jpg" alt="Гора Белалакая на Кавказе">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Домбай</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/ozero-teleckoe.jpg" alt="Телецкое озеро">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/ozero-teleckoe.jpg" alt="Телецкое озеро">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Телецкое озеро</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/pereval-katu-yarik.jpg" alt="Перевал Кату-ярык">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/pereval-katu-yarik.jpg" alt="Перевал Кату-ярык">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Перевал Кату-ярык</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./img/content/sheregesh-gora-zelenaya.jpg" alt="Шерегеш. Гора Зеленая">
+        <div class="place__image-container">
+          <img class="place__image" src="./img/content/sheregesh-gora-zelenaya.jpg" alt="Шерегеш. Гора Зеленая">
+        </div>
         <div class="place__info">
           <h2 class="place__title">Гора Зеленая. Шерегеш</h2>
           <button class="place__like" type="button" aria-label="Кнопка лайк" name="likeButton"></button>
@@ -79,18 +92,21 @@
     <p class="footer__text" lang="en">&copy; 2020 Mesto Russia</p>
   </footer>
 
- <!-- Попап -->
- <article class="popup">
-  <div class="popup__container">
-    <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна редактирования профиля" name="closePopupButton"></button>
-    <h3 class="popup__title">Редактировать профиль</h3>
-    <form action="#" id="popup__form" name="editProfile">
-      <input type="text" placeholder="Ваше имя/ник" class="popup__input popup__input_editProfile_name" name="editProfileName">
-      <input type="text" placeholder="Ваша должность" class="popup__input popup__input_editProfile_job" name="editProFileJob">
-      <button class="popup__save-btn" type="submit" name="saveEditButton">Сохранить</button>
-    </form>
-  </div>
-</article>
+  <!-- Попап -->
+  <article class="popup">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна редактирования профиля"
+        name="closePopupButton"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form action="#" id="popup__form" name="editProfile">
+        <input type="text" placeholder="Ваше имя/ник" class="popup__input popup__input_editProfile_name"
+          name="editProfileName">
+        <input type="text" placeholder="Ваша должность" class="popup__input popup__input_editProfile_job"
+          name="editProFileJob">
+        <button class="popup__save-btn" type="submit" name="saveEditButton">Сохранить</button>
+      </form>
+    </div>
+  </article>
 
   <script src="./scripts/script.js"></script>
 </body>

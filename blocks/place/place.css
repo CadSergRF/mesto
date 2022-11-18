@@ -1,6 +1,3 @@
 .place {
-  width: 282px;
-  height: 361px;
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
 }

@@ -1,7 +1,6 @@
 .places {
-  max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
   gap: 20px 17px;
+  grid-auto-flow: dense;
 }
