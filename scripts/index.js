@@ -1,26 +1,22 @@
 let userProfileEdit = document.querySelector('.user-profile__edit');
 let popupCloseBtn = document.querySelector('.popup__close-btn');
 let formEditProfile = document.getElementById('popup__form');
-let popupName = document.querySelector('.popup__input_editProfile_name');
+let popupName = document.querySelector('.popup__input_edit_name');
 let userName = document.querySelector('.user-profile__name');
-let popupJob = document.querySelector('.popup__input_editProfile_job');
+let popupJob = document.querySelector('.popup__input_edit_job');
 let userJob = document.querySelector('.user-profile__job');
-
+let popup = document.querySelector('.popup');
 
 // Открытие и закрытие PopUp
 function openPopup() {
-    let openPopup = document.querySelector('.popup');
-    // если переменную openPopup вынести из функии то код перестает работать. Непонимаю почему.
-
-    openPopup.classList.add('popup_opened');
+    popup.classList.add('popup_opened');
     // Заполняем поля текущим значением
     popupName.value = userName.textContent;
     popupJob.value = userJob.textContent;
 };
 
 function closePopup() {
-    let close = document.querySelector('.popup');
-    close.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
 };
 
 function formSubmitHandler(evt) {

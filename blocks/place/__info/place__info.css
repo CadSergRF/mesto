@@ -13,3 +13,9 @@
     padding: 25px 15px 31px 21px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .place__info {
+    padding: 25px 20px 26px 21px;
+  }
+}

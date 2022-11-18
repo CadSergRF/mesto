@@ -7,7 +7,7 @@
   background-image: url(../../../img/onAddBtn.svg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 22px;
+  background-size: 22px 22px;
   background-color: transparent;
   transition: opacity .2s ease-in-out;
   cursor: pointer;
