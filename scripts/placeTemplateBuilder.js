@@ -15,6 +15,8 @@ const placeTitleElement = document.createElement('h2');
 placeTitleElement.classList.add('place__title');
 const placeLikeElement = document.createElement('button');
 placeLikeElement.classList.add('place__like');
+placeLikeElement.setAttribute('type', 'button');
+placeLikeElement.setAttribute('aria-label', 'Кнопка лайка');
 /* Собираем шаблон */
 footerTag.after(placeTemplateElement);
 placeTemplateElement.append(placesItemElement);
