@@ -7,11 +7,10 @@ const userProfileEdit = document.querySelector('.user-profile__edit');
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
 
-// Открытие и закрытие PopUp
-function openPopup() {
+
+function openPopup() {                      /* Открытие PopUp */
   popup.classList.add('popup_opened');
-  // Заполняем поля текущим значением
-  popupName.value = userName.textContent;
+  popupName.value = userName.textContent;   /* Заполняем поля текущим значением */
   popupJob.value = userJob.textContent;
 };
 
@@ -19,12 +18,10 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 };
 
-function formSubmitHandler(evt) {
+function formSubmitHandler(evt) {           /* Редактирование профиля - сохранение изменений */
   evt.preventDefault();
-
-  userName.textContent = popupName.value;
+  userName.textContent = popupName.value;   /* Сохраняем введенные данные */
   userJob.textContent = popupJob.value;
-
   closePopup();
 }
 

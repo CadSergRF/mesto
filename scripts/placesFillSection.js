@@ -39,4 +39,4 @@ function addPlace(name, link) {
 }
 
 /* Заполняем контентом */
-initialPlaces.map(elem => addPlace(elem.name, elem.link));
+initialPlaces.forEach(elem => addPlace(elem.name, elem.link));
