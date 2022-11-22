@@ -1,0 +1,60 @@
+    <!-- Секция фотографий -->
+    <!-- <section class="places" aria-label="Фотографии">
+      <ul class="places__list">
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/Karachaevsk.jpg"
+              alt="Сентинский храм в районе города Крачаевск">
+            <div class="place__info">
+              <h2 class="place__title">Карачаевск</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/gora-elbrus.jpg" alt="Гора Эльбрус">
+            <div class="place__info">
+              <h2 class="place__title">Гора Эльбрус</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/dombaj.jpg" alt="Гора Белалакая на Кавказе">
+            <div class="place__info">
+              <h2 class="place__title">Домбай</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/ozero-teleckoe.jpg" alt="Телецкое озеро">
+            <div class="place__info">
+              <h2 class="place__title">Телецкое озеро</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/pereval-katu-yarik.jpg" alt="Перевал Кату-ярык">
+            <div class="place__info">
+              <h2 class="place__title">Перевал Кату-ярык</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+        <li class="places__item">
+          <article class="place">
+            <img class="place__image" src="./img/content/sheregesh-gora-zelenaya.jpg" alt="Шерегеш. Гора Зеленая">
+            <div class="place__info">
+              <h2 class="place__title">Гора Зеленая. Шерегеш</h2>
+              <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section> -->
