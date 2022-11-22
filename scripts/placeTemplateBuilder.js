@@ -23,3 +23,4 @@ placeTemplateElement.append(placesItemElement);
 placesItemElement.append(placeElement);
 placeElement.append(placeImageElement, placeInfoElement);
 placeInfoElement.append(placeTitleElement, placeLikeElement);
+/* Можно <template> и в html-е написать, но надо научиться собирать шаблон. */
