@@ -30,7 +30,10 @@
       <button class="user-profile__add-place" type="button" aria-label="Кнопка добавления контента"></button>
     </section>
 
-
+    <section class="places" aria-label="Фотографии">
+      <ul class="places__list">
+      </ul>
+    </section>
 
   </main>
 
@@ -53,7 +56,20 @@
     </div>
   </div>
 
-  <script src="./scripts/placeTemplateBuilder.js " defer></script>
+  <!-- Шаблон карточки place -->
+  <template id="placeTemplate">
+    <li class="places__item">
+      <article class="place">
+        <img class="place__image" src="" alt="">
+        <div class="place__info">
+          <h2 class="place__title"></h2>
+          <button class="place__like" type="button" aria-label="Кнопка лайк"></button>
+        </div>
+      </article>
+    </li>
+  </template>
+
+  <script src="./scripts/placesFillSection.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </body>
 
