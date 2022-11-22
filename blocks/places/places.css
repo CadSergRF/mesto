@@ -1,7 +1,9 @@
 .places {
   max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
   gap: 20px 17px;
+  justify-content: center;
+  grid-auto-flow: dense;
 }
