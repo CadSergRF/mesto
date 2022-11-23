@@ -1,4 +1,5 @@
-const initialPlaces = [
+/* Переменные */
+const initialPlaces = [  // Начальная база places
   {
     name: 'Кузнецкий Алатау',
     link: './img/content/kuzneckij-alatau.jpg'
@@ -25,8 +26,8 @@ const initialPlaces = [
   },
 ]
 
-const editProfileForm = document.forms.editProfile;
-const addPlaceForm = document.forms.addPlace;
+const editProfileForm = document.forms.editProfile;   // Форма редактирования профиля
+const addPlaceForm = document.forms.addPlace;         // Форма добавления place
 const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('#edit-profile'); // Popup редактирования профиля пользователя
 const popupAddPlace = document.querySelector('#add-place'); // Popup редактирования профиля пользователя
@@ -37,7 +38,7 @@ const userJob = document.querySelector('.user-profile__job');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 
-
+/* Функции */
 function openPopup(event) {                      /* Открытие PopUp */
 
   if (event.target.classList.contains('user-profile__edit')) {  //Popup редактирования профиля
@@ -47,6 +48,7 @@ function openPopup(event) {                      /* Открытие PopUp */
   };
 
   if (event.target.classList.contains('user-profile__add-place')) {  //Popup добавления нового place
+
     popupAddPlace.classList.add('popup_opened');
   };
 };
@@ -57,7 +59,14 @@ function closePopup(event) {                //Закрытие любого Popu
   };
 };
 
-function fillPlace(name, link) {             // Добавление нового place
+function formSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
+  event.preventDefault();
+  userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
+  userJob.textContent = editProfileForm.elements.editProFileJob.value;
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
+function createPlace(name, link) {             // Создание нового place
   const placeTemplateElement = document.querySelector('#placeTemplate').content;
   const placeElement = placeTemplateElement.querySelector('.places__item').cloneNode(true);
 
@@ -68,23 +77,18 @@ function fillPlace(name, link) {             // Добавление новог�
   placesListElement.prepend(placeElement);
 }
 
-function addPlace(event) {
+function addPlace(event) {                    // Добавление нового place
   event.preventDefault();
   const addPlaceName = addPlaceForm.elements.addPlaceName.value;
   const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
-  fillPlace(addPlaceName, addPlaceLink);
+  createPlace(addPlaceName, addPlaceLink);
+  addPlaceForm.reset();
   event.target.closest('.popup').classList.remove('popup_opened');
 }
 
-function formSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
-  event.preventDefault();
-  userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
-  userJob.textContent = editProfileForm.elements.editProFileJob.value;
-  event.target.closest('.popup').classList.remove('popup_opened');
-}
 
 /* Загрузка начального контента на страницу */
-initialPlaces.forEach(elem => fillPlace(elem.name, elem.link));
+initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
 
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', openPopup);
