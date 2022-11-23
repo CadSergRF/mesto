@@ -57,7 +57,7 @@ function closePopup(event) {                //Закрытие любого Popu
   };
 };
 
-function addPlace(name, link) {             // Добавление нового place
+function fillPlace(name, link) {             // Добавление нового place
   const placeTemplateElement = document.querySelector('#placeTemplate').content;
   const placeElement = placeTemplateElement.querySelector('.places__item').cloneNode(true);
 
@@ -68,19 +68,27 @@ function addPlace(name, link) {             // Добавление нового
   placesListElement.prepend(placeElement);
 }
 
-function formSubmitHandler(evt) {           /* Редактирование профиля - сохранение изменений */
-  evt.preventDefault();
-  userName.textContent = popupName.value;   /* Сохраняем введенные данные */
-  userJob.textContent = popupJob.value;
-  closePopup();
+function addPlace(event) {
+  event.preventDefault();
+  const addPlaceName = addPlaceForm.elements.addPlaceName.value;
+  const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
+  fillPlace(addPlaceName, addPlaceLink);
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
+function formSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
+  event.preventDefault();
+  userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
+  userJob.textContent = editProfileForm.elements.editProFileJob.value;
+  event.target.closest('.popup').classList.remove('popup_opened');
 }
 
 /* Загрузка начального контента на страницу */
-initialPlaces.forEach(elem => addPlace(elem.name, elem.link));
+initialPlaces.forEach(elem => fillPlace(elem.name, elem.link));
 
 /* Обработчики событий */
-// formEditProfile.addEventListener('submit', formSubmitHandler);
-
 userProfileEditBtn.addEventListener('click', openPopup);
 userProfileAddPlaceBtn.addEventListener('click', openPopup);
 popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
+editProfileForm.addEventListener('submit', formSubmitProfile);
+addPlaceForm.addEventListener('submit', addPlace);
