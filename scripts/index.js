@@ -76,7 +76,7 @@ function createPlace(name, link) {             // Создание нового 
   placeElement.querySelector('.place__title').textContent = name; // Название place
 
   placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик события likeIcon
-
+  placeElement.querySelector('.place__delete').addEventListener('click', deletePlace); // Обработчик события deleteIcon
 
   placesListElement.prepend(placeElement);
 }
@@ -100,6 +100,14 @@ function likePlace(event) {
   // }
   event.target.classList.toggle('place__like_active');
 };
+
+// Функция удаления place
+function deletePlace(event) {
+  const placeDel = event.target.closest('.places__item');
+  placeDel.parentNode.removeChild(placeDel);
+  // document.querySelector('.places__list_redraw').classList.remove('places__list');
+  // document.querySelector('.places__list_redraw').classList.add('places__list');
+}
 
 /* Загрузка начального контента на страницу */
 initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
