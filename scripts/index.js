@@ -37,6 +37,7 @@ const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
+let likeIconBtn = document.querySelectorAll('place__like');
 
 /* Функции */
 function openPopup(event) {                      /* Открытие PopUp */
@@ -78,14 +79,24 @@ function createPlace(name, link) {             // Создание нового 
 }
 
 function addPlace(event) {                    // Добавление нового place
-  event.preventDefault();
+  event.preventDefault();                     // убираем стандартное событие
   const addPlaceName = addPlaceForm.elements.addPlaceName.value;
   const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
   createPlace(addPlaceName, addPlaceLink);
-  addPlaceForm.reset();
+  addPlaceForm.reset(); // Очистка полей формы
   event.target.closest('.popup').classList.remove('popup_opened');
 }
 
+//Фунция отображения лайков
+function likePlace() {
+  // let likeIcon = document.querySelectorAll('.place__like');
+  for (let i = 0; i < likeIconBtn.length; i++) {
+      likeIconBtn[i].addEventListener('click', function () {
+          likeIconBtn[i].classList.toggle('place__like_active');
+      })
+  }
+  // event.target.classList.toggle('place__like_active');
+};
 
 /* Загрузка начального контента на страницу */
 initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
@@ -96,3 +107,5 @@ userProfileAddPlaceBtn.addEventListener('click', openPopup);
 popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
 editProfileForm.addEventListener('submit', formSubmitProfile);
 addPlaceForm.addEventListener('submit', addPlace);
+// likeIconBtn.forEach(elem => elem.addEventListener('click ', likePlace));
+likePlace();
