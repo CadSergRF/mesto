@@ -27,13 +27,14 @@ const initialPlaces = [
 
 const popup = document.querySelector('.popup');
 const formEditProfile = document.getElementById('popup__form');
-const popupCloseBtn = document.querySelector('.popup__close-btn');
+let popupCloseBtn = document.querySelector('.popup__close-btn'); //Кнопка закрытия PopUp
 const popupName = document.querySelector('.popup__input_edit_name');
 const popupJob = document.querySelector('.popup__input_edit_job');
-const userProfileEdit = document.querySelector('.user-profile__edit');
+const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка редактирования профиля пользователя
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
-const placesListElement = document.querySelector('.places__list');
+const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
+const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 
 
 function openPopup() {                      /* Открытие PopUp */
@@ -64,8 +65,12 @@ function formSubmitHandler(evt) {           /* Редактирование пр
   closePopup();
 }
 
-initialPlaces.forEach(elem => addPlace(elem.name, elem.link));  /* Заполняем контентом */
+  /* Загрузка начального контента на страницу */
+initialPlaces.forEach(elem => addPlace(elem.name, elem.link));
 
+  /* Обработчики событий */
 formEditProfile.addEventListener('submit', formSubmitHandler);
-userProfileEdit.addEventListener('click', openPopup);
-popupCloseBtn.addEventListener('click', closePopup);
+
+userProfileEditBtn.addEventListener('click', openPopup);
+userProfileAddPlaceBtn.addEventListener('click', openPopup);
+popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
