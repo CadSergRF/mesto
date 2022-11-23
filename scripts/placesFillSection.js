@@ -1,15 +1,15 @@
 const initialPlaces = [
   {
-    name: 'Карачаевск. Сентинский храм',
-    link: './img/content/Karachaevsk.jpg'
+    name: 'Кузнецкий Алатау',
+    link: './img/content/kuzneckij-alatau.jpg'
   },
   {
-    name: 'Гора Эльбрус',
-    link: './img/content/gora-elbrus.jpg'
+    name: 'Озеро Байкал',
+    link: './img/content/ozero-baykal.jpg'
   },
   {
-    name: 'Гора Белалакая',
-    link: './img/content/dombaj.jpg'
+    name: 'Красноярские столбы',
+    link: './img/content/krasnoyarskie-stolbi.jpg'
   },
   {
     name: 'Перевал Кату-ярык',
