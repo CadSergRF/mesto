@@ -37,7 +37,7 @@ const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
-let likeIconBtn = document.querySelectorAll('place__like');
+// let likeIconBtn = document.querySelectorAll('place__like');
 
 /* Функции */
 function openPopup(event) {                      /* Открытие PopUp */
@@ -71,9 +71,12 @@ function createPlace(name, link) {             // Создание нового 
   const placeTemplateElement = document.querySelector('#placeTemplate').content;
   const placeElement = placeTemplateElement.querySelector('.places__item').cloneNode(true);
 
-  placeElement.querySelector('.place__image').src = link;
+  placeElement.querySelector('.place__image').src = link; // Ссылка на картинку
   placeElement.querySelector('.place__image').alt = name; //Дополнительно прописываем alt для изображения
-  placeElement.querySelector('.place__title').textContent = name;
+  placeElement.querySelector('.place__title').textContent = name; // Название place
+
+  placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик события likeIcon
+
 
   placesListElement.prepend(placeElement);
 }
@@ -88,14 +91,14 @@ function addPlace(event) {                    // Добавление новог
 }
 
 //Фунция отображения лайков
-function likePlace() {
+function likePlace(event) {
   // let likeIcon = document.querySelectorAll('.place__like');
-  for (let i = 0; i < likeIconBtn.length; i++) {
-      likeIconBtn[i].addEventListener('click', function () {
-          likeIconBtn[i].classList.toggle('place__like_active');
-      })
-  }
-  // event.target.classList.toggle('place__like_active');
+  // for (let i = 0; i < likeIconBtn.length; i++) {
+  //     likeIconBtn[i].addEventListener('click', function () {
+  //         likeIconBtn[i].classList.toggle('place__like_active');
+  //     })
+  // }
+  event.target.classList.toggle('place__like_active');
 };
 
 /* Загрузка начального контента на страницу */
@@ -108,4 +111,4 @@ popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
 editProfileForm.addEventListener('submit', formSubmitProfile);
 addPlaceForm.addEventListener('submit', addPlace);
 // likeIconBtn.forEach(elem => elem.addEventListener('click ', likePlace));
-likePlace();
+// likePlace();
