@@ -1,0 +1,5 @@
+.popup__image-big {
+  display: block;
+  width: 100%;
+  background-size: contain;
+}
