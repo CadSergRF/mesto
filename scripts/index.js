@@ -61,15 +61,20 @@ function openPopup(event) {                      /* Открытие PopUp */
   }
 };
 
-function closePopup(event) {                //Закрытие любого Popup
+// Анимация закрытия
+function animeClosePopup(event) {
+  event.target.closest('.popup').classList.add('popup_opened_close'); // Плавное закрытие
+  setTimeout(() => {                // Для показа анимации
+    event.target.closest('.popup').classList.remove('popup_opened');
+    event.target.closest('.popup').classList.remove('popup_opened_close');
+  },
+    690
+  );
+}
+
+function closePopup(event) {                //Закрытие любого Popup через крестик
   if (event.target.classList.contains('popup__close-btn')) {
-    event.target.closest('.popup').classList.add('popup_opened_close'); // Плавное закрытие
-    setTimeout(() => {                // Для показа анимации
-      event.target.closest('.popup').classList.remove('popup_opened');
-      event.target.closest('.popup').classList.remove('popup_opened_close');
-    },
-      690
-    );
+    animeClosePopup(event);
   };
 };
 
@@ -77,7 +82,7 @@ function formSubmitProfile(event) {           /* Редактирование п
   event.preventDefault();
   userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
   userJob.textContent = editProfileForm.elements.editProFileJob.value;
-  event.target.closest('.popup').classList.remove('popup_opened');
+  animeClosePopup(event);
 }
 
 function createPlace(name, link) {             // Создание нового place
@@ -101,7 +106,7 @@ function addPlace(event) {                    // Добавление новог
   const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
   createPlace(addPlaceName, addPlaceLink);
   addPlaceForm.reset(); // Очистка полей формы
-  event.target.closest('.popup').classList.remove('popup_opened');
+  animeClosePopup(event);
 }
 
 //Фунция отображения лайков
