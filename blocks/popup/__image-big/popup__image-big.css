@@ -2,7 +2,8 @@
   display: block;
   max-width: 75vw;
   max-height: 75vh;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 
@@ -11,6 +12,7 @@
     max-width: 100%;
     min-height: 299px;
     height: 75vh;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
