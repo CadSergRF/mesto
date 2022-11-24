@@ -39,6 +39,7 @@ const userJob = document.querySelector('.user-profile__job');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
+const popup__ImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
 
 /* Функции */
 function openPopup(event) {                      /* Открытие PopUp */
