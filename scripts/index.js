@@ -57,14 +57,19 @@ function openPopup(event) {                      /* Открытие PopUp */
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
     popupImageBig.src = event.target.src;
     popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
-    popupEnhanceImage.classList.add('popup_big-image');
     popupEnhanceImage.classList.add('popup_opened');
   }
 };
 
 function closePopup(event) {                //Закрытие любого Popup
   if (event.target.classList.contains('popup__close-btn')) {
-    event.target.closest('.popup').classList.remove('popup_opened');
+    event.target.closest('.popup').classList.add('popup_opened_close'); // Плавное закрытие
+    setTimeout(() => {                // Для показа анимации
+      event.target.closest('.popup').classList.remove('popup_opened');
+      event.target.closest('.popup').classList.remove('popup_opened_close');
+    },
+      690
+    );
   };
 };
 
@@ -118,5 +123,3 @@ userProfileAddPlaceBtn.addEventListener('click', openPopup);
 popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
 editProfileForm.addEventListener('submit', formSubmitProfile);
 addPlaceForm.addEventListener('submit', addPlace);
-// likeIconBtn.forEach(elem => elem.addEventListener('click ', likePlace));
-// likePlace();
