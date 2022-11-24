@@ -31,15 +31,14 @@ const addPlaceForm = document.forms.addPlace;         // Форма добавл
 const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('#edit-profile'); // Popup редактирования профиля пользователя
 const popupAddPlace = document.querySelector('#add-place'); // Popup редактирования профиля пользователя
-const popupBigImage = document.querySelector('#bigImage');  // Popup увеличение картинки по клику
+const popupEnhanceImage = document.querySelector('#enhance-image'); // Popup увеличение картинки по клику
 let popupCloseBtn = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
 const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
-const placeImage = document.querySelector('place__image'); // Картинка в place
-const popupImageBig = document.querySelector('popup__image-big'); // Увеличенная картинка
+const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
 
 /* Функции */
 function openPopup(event) {                      /* Открытие PopUp */
@@ -54,8 +53,9 @@ function openPopup(event) {                      /* Открытие PopUp */
     popupAddPlace.classList.add('popup_opened');
   };
 
-  if (event.target.classList.contains('place__image')) {
-    event.target.get
+  if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
+    popupEnhanceImage.classList.add('popup_opened');
+    popupImageBig.src = event.target.src;
   }
 };
 

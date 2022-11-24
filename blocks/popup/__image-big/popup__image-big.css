@@ -1,5 +1,7 @@
 .popup__image-big {
   display: block;
-  width: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
   background-size: contain;
+  background-repeat: no-repeat;
 }
