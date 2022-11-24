@@ -4,7 +4,7 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 938px) {
   .root__container {
     max-width: 100%;
     padding: 0 19px;

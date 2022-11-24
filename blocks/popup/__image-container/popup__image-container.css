@@ -1,4 +1,6 @@
 .popup__image-container {
   box-sizing: border-box;
+  width: fit-content;
   position: relative;
 }
+
