@@ -2,6 +2,15 @@
   display: block;
   max-width: 75vw;
   max-height: 75vh;
-  background-size: contain;
-  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+
+@media screen and (orientation: portrait) {
+  .popup__image-big {
+    max-width: 100%;
+    min-height: 299px;
+    height: 75vh;
+    object-fit: cover;
+  }
 }
