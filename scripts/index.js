@@ -35,19 +35,13 @@ function openPopup(event) {                      /* Открытие PopUp */
 };
 
 // Анимация закрытия
-function animeClosePopup(event) {
-  event.target.closest('.popup').classList.add('popup_opened_close'); // Плавное закрытие
-  setTimeout(() => {                // Для показа анимации
+function closePopup(event) {
     event.target.closest('.popup').classList.remove('popup_opened');
-    event.target.closest('.popup').classList.remove('popup_opened_close');
-  },
-    690
-  );
 }
 
-function closePopup(event) {                //Закрытие любого Popup через крестик
+function closePopupButton(event) {                //Закрытие любого Popup через крестик
   if (event.target.classList.contains('popup__close-btn')) {
-    animeClosePopup(event);
+    closePopup(event);
   };
 };
 
@@ -55,7 +49,7 @@ function formSubmitProfile(event) {           /* Редактирование п
   event.preventDefault();
   userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
   userJob.textContent = editProfileForm.elements.editProFileJob.value;
-  animeClosePopup(event);
+  closePopup(event);
 }
 
 function createPlace(name, link) {             // Создание нового place
@@ -79,7 +73,7 @@ function addPlace(event) {                    // Добавление новог
   const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
   createPlace(addPlaceName, addPlaceLink);
   addPlaceForm.reset(); // Очистка полей формы
-  animeClosePopup(event);
+  closePopup(event);
 }
 
 //Фунция отображения лайков
@@ -98,6 +92,6 @@ initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', openPopup);
 userProfileAddPlaceBtn.addEventListener('click', openPopup);
-popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopup));
+popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopupButton));
 editProfileForm.addEventListener('submit', formSubmitProfile);
 addPlaceForm.addEventListener('submit', addPlace);

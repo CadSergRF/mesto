@@ -1,8 +1,0 @@
-@keyframes bigImageClose {
-  from {opacity: 1;}
-  to {opacity: 0;}
-}
-
-.popup_opened_close {
-  animation: bigImageClose .7s linear;
-}

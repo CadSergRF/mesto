@@ -1,9 +1,4 @@
-@keyframes bigImageOpen {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
 .popup_opened {
-  display: flex;
-  animation: bigImageOpen .7s linear;
+  opacity: 1;
+  visibility: visible;
 }
