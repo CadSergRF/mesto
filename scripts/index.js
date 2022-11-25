@@ -1,11 +1,11 @@
 /* Переменные */
-const editProfileForm = document.forms.editProfile;   // Форма редактирования профиля
-const addPlaceForm = document.forms.addPlace;         // Форма добавления place
-const popup = document.querySelector('.popup');
-const popupEditProfile = document.querySelector('#edit-profile'); // Popup редактирования профиля пользователя
-const popupAddPlace = document.querySelector('#add-place'); // Popup редактирования профиля пользователя
-const popupEnhanceImage = document.querySelector('#enhance-image'); // Popup увеличение картинки по клику
-let popupCloseBtn = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
+const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
+const formAddPlace = document.forms.addPlace;         // Форма добавления place
+const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
+const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
+const popupAddPlace = document.querySelector('#add-place'); // id Popup редактирования профиля пользователя
+const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
+const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
 const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
@@ -19,8 +19,8 @@ function openPopup(event) {                      /* Открытие PopUp */
 
   if (event.target.classList.contains('user-profile__edit')) {  //Popup редактирования профиля
     popupEditProfile.classList.add('popup_opened');
-    editProfileForm.elements.editProfileName.value = userName.textContent;  // Показываем текущее значение
-    editProfileForm.elements.editProFileJob.value = userJob.textContent;
+    formEditProfile.elements.editProfileName.value = userName.textContent;  // Показываем текущее значение
+    formEditProfile.elements.editProFileJob.value = userJob.textContent;
   };
 
   if (event.target.classList.contains('user-profile__add-place')) {  //Popup добавления нового place
@@ -47,8 +47,8 @@ function closePopupButton(event) {                //Закрытие любог�
 
 function formSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
   event.preventDefault();
-  userName.textContent = editProfileForm.elements.editProfileName.value;   /* Сохраняем введенные данные */
-  userJob.textContent = editProfileForm.elements.editProFileJob.value;
+  userName.textContent = formEditProfile.elements.editProfileName.value;   /* Сохраняем введенные данные */
+  userJob.textContent = formEditProfile.elements.editProFileJob.value;
   closePopup(event);
 }
 
@@ -69,10 +69,10 @@ function createPlace(name, link) {             // Создание нового 
 
 function addPlace(event) {                    // Добавление нового place
   event.preventDefault();                     // убираем стандартное событие
-  const addPlaceName = addPlaceForm.elements.addPlaceName.value;
-  const addPlaceLink = addPlaceForm.elements.addPlaceLink.value;
+  const addPlaceName = formAddPlace.elements.addPlaceName.value;
+  const addPlaceLink = formAddPlace.elements.addPlaceLink.value;
   createPlace(addPlaceName, addPlaceLink);
-  addPlaceForm.reset(); // Очистка полей формы
+  formAddPlace.reset(); // Очистка полей формы
   closePopup(event);
 }
 
@@ -92,6 +92,6 @@ initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', openPopup);
 userProfileAddPlaceBtn.addEventListener('click', openPopup);
-popupCloseBtn.forEach(elem => elem.addEventListener('click', closePopupButton));
-editProfileForm.addEventListener('submit', formSubmitProfile);
-addPlaceForm.addEventListener('submit', addPlace);
+popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
+formEditProfile.addEventListener('submit', formSubmitProfile);
+formAddPlace.addEventListener('submit', addPlace);
