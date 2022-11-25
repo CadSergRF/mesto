@@ -15,29 +15,37 @@ const popupImageBig = document.querySelector('.popup__image-big');  // Увел�
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
 
 /* Функции */
-function openPopup(event) {                      /* Открытие PopUp */
+function openPopup(idPopup) {  // открытие popup
+  idPopup.classList.add('popup_opened');
+}
 
+function closePopup(event) {    // Закрытие Popup
+  event.target.closest('.popup').classList.remove('popup_opened');
+}
+
+function fillFormCurrentValue(selectedForm) {  // Функция заполнения полей form текущими значениями
+  selectedForm.elements.editProfileName.value = userName.textContent;
+  selectedForm.elements.editProFileJob.value = userJob.textContent;
+}
+
+function fillEnhanceImageValue(event) { // Увеличение картинок.
+  popupImageBig.src = event.target.src;
+  popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
+}
+
+function openPopupOptional(event) {                      /* Выбор окна Popup для открытия */
   if (event.target.classList.contains('user-profile__edit')) {  //Popup редактирования профиля
-    popupEditProfile.classList.add('popup_opened');
-    formEditProfile.elements.editProfileName.value = userName.textContent;  // Показываем текущее значение
-    formEditProfile.elements.editProFileJob.value = userJob.textContent;
+    fillFormCurrentValue(formEditProfile);
+    openPopup(popupEditProfile);
   };
-
   if (event.target.classList.contains('user-profile__add-place')) {  //Popup добавления нового place
-    popupAddPlace.classList.add('popup_opened');
+    openPopup(popupAddPlace);
   };
-
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
-    popupImageBig.src = event.target.src;
-    popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
-    popupEnhanceImage.classList.add('popup_opened');
+    fillEnhanceImageValue(event, popupEnhanceImage);
+    openPopup(popupEnhanceImage);
   }
 };
-
-// Анимация закрытия
-function closePopup(event) {
-    event.target.closest('.popup').classList.remove('popup_opened');
-}
 
 function closePopupButton(event) {                //Закрытие любого Popup через крестик
   if (event.target.classList.contains('popup__close-btn')) {
@@ -62,7 +70,7 @@ function createPlace(name, link) {             // Создание нового 
 
   placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик like
   placeElement.querySelector('.place__delete').addEventListener('click', deletePlace); // Обработчик delete
-  placeElement.querySelector('.place').addEventListener('click', openPopup); // Увеличение по клику
+  placeElement.querySelector('.place').addEventListener('click', openPopupOptional); // Увеличение по клику
 
   placesListElement.prepend(placeElement);
 }
@@ -90,8 +98,8 @@ function deletePlace(event) {
 initialPlaces.forEach(elem => createPlace(elem.name, elem.link));
 
 /* Обработчики событий */
-userProfileEditBtn.addEventListener('click', openPopup);
-userProfileAddPlaceBtn.addEventListener('click', openPopup);
+userProfileEditBtn.addEventListener('click', openPopupOptional);
+userProfileAddPlaceBtn.addEventListener('click', openPopupOptional);
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 formEditProfile.addEventListener('submit', formSubmitProfile);
 formAddPlace.addEventListener('submit', addPlace);
