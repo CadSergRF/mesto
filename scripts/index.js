@@ -39,7 +39,7 @@ function openPopupOptional(event) {                      /* Выбор окна 
     openPopup(popupAddPlace);
   };
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
-    fillEnhanceImageValue(event, popupEnhanceImage);
+    fillEnhanceImageValue(event);
     openPopup(popupEnhanceImage);
   }
 };
