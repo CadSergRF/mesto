@@ -81,9 +81,9 @@ function renderPlace(item) {
 
 function handleAddPlace(event) {                    // Добавление нового place
   event.preventDefault();                     // убираем стандартное событие
-  const addPlaceName = formAddPlace.elements.addPlaceName.value;
-  const addPlaceLink = formAddPlace.elements.addPlaceLink.value;
-  const newPlace = {name: addPlaceName, link: addPlaceLink};
+  const newPlaceName = formAddPlace.elements.newPlaceName.value;
+  const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
+  const newPlace = {name: newPlaceName, link: newPlaceLink};
   renderPlace(newPlace);
   formAddPlace.reset(); // Очистка полей формы
   closePopup(event);
