@@ -18,39 +18,38 @@ const popupImageTitle = document.querySelector('.popup__image-title'); // Под
 /* Функции */
 function openPopup(idPopup) {  // открытие popup
   idPopup.classList.add('popup_opened');
-}
+};
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
   selectedForm.elements.editProfileName.value = userName.textContent;
   selectedForm.elements.editProFileJob.value = userJob.textContent;
-}
+};
 
 function fillEnhanceImageValue(event) { // Увеличение картинок.
   popupImageBig.src = event.target.src;
   popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
-}
+};
 
-function openPopupOptional(event) {                      /* Выбор окна Popup для открытия */
-  if (event.target.classList.contains('user-profile__edit')) {  //Popup редактирования профиля
-    fillFormEditProfile(formEditProfile);
-    openPopup(popupEditProfile);
-  };
-  if (event.target.classList.contains('user-profile__add-place')) {  //Popup добавления нового place
-    openPopup(popupAddPlace);
-  };
+function handleOpenProfilePopup() {   //Popup редактирования профиля
+  fillFormEditProfile(formEditProfile);
+  openPopup(popupEditProfile);
+};
+
+function handleBigImagePopup(event) {
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
     fillEnhanceImageValue(event);
     openPopup(popupEnhanceImage);
   }
 };
 
-function closePopup(event) {    // Закрытие Popup
-  event.target.closest('.popup').classList.remove('popup_opened');
-}
+function closePopup(idPopup) {    // Закрытие Popup
+  idPopup.classList.remove('popup_opened');
+};
 
 function closePopupButton(event) {                //Закрытие любого Popup через крестик
   if (event.target.classList.contains('popup__close-btn')) {
-    closePopup(event);
+    event.target.closest('.popup').classList.remove('popup_opened');
+    //можно и тут передавать переменную по id, но тогда придется делать конструкцию swith-case. Только увеличит код.
   };
 };
 
@@ -58,7 +57,7 @@ function handleSubmitProfile(event) {           /* Редактирование 
   event.preventDefault();
   userName.textContent = formEditProfile.elements.editProfileName.value;   /* Сохраняем введенные данные */
   userJob.textContent = formEditProfile.elements.editProFileJob.value;
-  closePopup(event);
+  closePopup(popupEditProfile);
 }
 
 function createPlace(placeData) {              // Создание нового place - принимает объект
@@ -70,7 +69,7 @@ function createPlace(placeData) {              // Создание нового 
 
   placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик like
   placeElement.querySelector('.place__delete').addEventListener('click', deletePlace); // Обработчик delete
-  placeElement.querySelector('.place').addEventListener('click', openPopupOptional); // Увеличение по клику
+  placeElement.querySelector('.place').addEventListener('click', handleBigImagePopup); // Увеличение по клику
 
   return placeElement;    // Возвращаем готовый элемент
 }
@@ -83,10 +82,10 @@ function handleAddPlace(event) {                    // Добавление но
   event.preventDefault();                     // убираем стандартное событие
   const newPlaceName = formAddPlace.elements.newPlaceName.value;
   const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
-  const newPlace = {name: newPlaceName, link: newPlaceLink};
+  const newPlace = { name: newPlaceName, link: newPlaceLink };
   renderPlace(newPlace);
   formAddPlace.reset(); // Очистка полей формы
-  closePopup(event);
+  closePopup(popupAddPlace);
 }
 
 //Фунция отображения лайков
@@ -103,8 +102,8 @@ function deletePlace(event) {
 initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
 
 /* Обработчики событий */
-userProfileEditBtn.addEventListener('click', openPopupOptional);
-userProfileAddPlaceBtn.addEventListener('click', openPopupOptional);
+userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
+userProfileAddPlaceBtn.addEventListener('click', () => openPopup(popupAddPlace));
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 formEditProfile.addEventListener('submit', handleSubmitProfile);
 formAddPlace.addEventListener('submit', handleAddPlace);
