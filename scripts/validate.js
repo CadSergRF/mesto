@@ -4,7 +4,7 @@ import { configValidation } from './configValidation.js';
 
 
 function enableValidation(config) {
-  const {formSelector, inputSelector, submitButtonSelector, ...errorConfig} = config;
+  const { formSelector, inputSelector, submitButtonSelector, ...errorConfig } = config;
 
   const forms = document.querySelectorAll(formSelector);
 
@@ -16,7 +16,20 @@ function enableValidation(config) {
       evt.preventDefault();
     })
 
-    console.log(inputs);
+    inputs.forEach ((input) => {
+      // Функция проверки валидации
+      if (!input.validity.valid) {
+        const errorElem = form.querySelector(`.${input.name}-error`);
+        input.classList.add(`${errorConfig.inputErrorClass}`);
+        errorElem.textContent = 'Ошибка';
+
+      } else {
+        const errorElem = form.querySelector(`.${input.name}-error`);
+        input.classList.remove(`${errorConfig.inputErrorClass}`);
+        errorElem.textContent = '';
+
+      }
+    })
   })
 
 };
