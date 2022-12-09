@@ -17,20 +17,31 @@ function checkValidityForm(form, inputs, config) { // проверка вали�
     input.addEventListener('input', () => {
       if (!input.validity.valid) {
         showErrorMessage(form, input, config, input.validationMessage);
-      } else {
+      }
+      else {
         hideErrorMessage(form, input, config);
+      }
+      const button = form.querySelector(config.submitButtonSelector);
+      console.log(button);
+      const isValidForm = inputs.every((input) => input.validity.valid);
+      if (isValidForm) {
+        button.classList.remove(config.inactiveButtonClass);
+        button.disabled = '';
+      }
+      else {
+        button.classList.add(config.inactiveButtonClass);
+        button.disabled = 'disabled';
       }
     });
   });
 };
 
 function enableValidation(config) {
-  const { formSelector, inputSelector, submitButtonSelector, ...errorConfig } = config;
+  const { formSelector, inputSelector, ...errorConfig } = config;
   const forms = document.querySelectorAll(formSelector);
 
   forms.forEach((form) => {
     const inputs = [...form.querySelectorAll(inputSelector)];
-    const button = form.querySelector(submitButtonSelector);
 
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
