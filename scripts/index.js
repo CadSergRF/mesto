@@ -13,14 +13,24 @@ const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кн
 const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
+// const errorMessages = document.querySelectorAll('.popup__input-error');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
 
 /* Функции */
+function clearPopupErrorMessages(idPopup) {
+  const errorMessages = idPopup.querySelectorAll('.popup__input-error');
+  console.log(errorMessages);
+  errorMessages.forEach(item => {
+    item.textContent = '';
+  })
+};
+
 function openPopup(idPopup) {  // открытие popup
   idPopup.classList.add('popup_opened');
+  clearPopupErrorMessages(idPopup);
 };
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
