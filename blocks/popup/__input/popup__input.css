@@ -5,23 +5,17 @@
   font-size: 14px;
   line-height: 28px;
   box-sizing: border-box;
-  margin: 0 0 30px;
-  padding: 0 5px;
+  padding: 0;
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  outline: none;
 }
 
 .popup__input::placeholder {
-  color: #000;
+  color: rgba(0, 0, 0, .2);
 }
 
-.popup__input:last-of-type {
-  margin-bottom: 48px;
-}
-
-@media screen and (max-width: 800px) {
-  .popup__input:last-of-type {
-    margin-bottom: 44px;
-  }
+.popup__input:invalid {
+  border-bottom: 1px solid #ff0000;
 }

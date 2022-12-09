@@ -1,9 +1,11 @@
 /* Переменные */
+import { initialPlaces } from './places.js';
+
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
 const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
 const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
-const popupAddPlace = document.querySelector('#add-place'); // id Popup добавления нового place
+const popupAddPlace = document.querySelector('#add-place'); // id Popup добавление картинки
 const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
 const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
 const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
@@ -51,6 +53,18 @@ function closePopupButton(event) {                //Закрытие любог�
     event.target.closest('.popup').classList.remove('popup_opened');
     //можно и тут передавать переменную по id, но тогда придется делать конструкцию swith-case. Только увеличит код.
   };
+};
+
+function closePopupByOverlay(event) {           // По клику на Oveerlay
+  if (event.target.classList.contains('popup_opened')) {
+    closePopup(event.target);
+  }
+};
+
+function closePopupByEsc(event) {
+  if (event.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
 };
 
 function handleSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
@@ -105,5 +119,7 @@ initialPlaces.forEach(elem => renderPlace(elem));     // Создание чер
 userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
 userProfileAddPlaceBtn.addEventListener('click', () => openPopup(popupAddPlace));
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
+popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
+document.querySelector('.root').addEventListener('keyup', closePopupByEsc);
 formEditProfile.addEventListener('submit', handleSubmitProfile);
 formAddPlace.addEventListener('submit', handleAddPlace);

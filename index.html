@@ -46,11 +46,13 @@
     <div class="popup__container">
       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна редактирования профиля"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form name="editProfile">
-        <input type="text" placeholder="Ваше имя/ник" class="popup__input popup__input_edit_name" name="editProfileName"
-          required>
-        <input type="text" placeholder="Ваша должность" class="popup__input popup__input_edit_job" name="editProFileJob"
-          required>
+      <form class="popup__form" name="editProfile">
+        <input class="popup__input popup__input_edit_name" type="text" placeholder="Ваше имя/ник" name="editProfileName"
+          minlength="2" maxlength="40" required>
+        <span class="popup__input-error"></span>
+        <input class="popup__input popup__input_edit_job" type="text" placeholder="Ваша должность" name="editProFileJob"
+          minlength="2" maxlength="200" required>
+        <span class="popup__input-error"></span>
         <button class="popup__save-btn" type="submit" aria-label="Кнопка сохранить изменения">Сохранить</button>
       </form>
     </div>
@@ -60,7 +62,7 @@
     <div class="popup__container">
       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна добавления контента"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form name="addPlace">
+      <form class="popup__form" name="addPlace">
         <input type="text" placeholder="Название" class="popup__input popup__input_place_name" name="newPlaceName"
           required>
         <input type="URL" placeholder="Ссылка на картинку" class="popup__input popup__input_place_link"
@@ -91,8 +93,8 @@
     </li>
   </template>
 
-  <script src="./scripts/places.js" defer></script>
-  <script src="./scripts/index.js" defer></script>
+  <!-- <script src="./scripts/places.js" defer></script> -->
+  <script src="./scripts/index.js" type="module" defer></script>
 </body>
 
 </html>

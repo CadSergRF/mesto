@@ -1,3 +1,5 @@
+export { initialPlaces };
+
 const initialPlaces = [  // Начальная база places
   {
     name: 'Кузнецкий Алатау',
@@ -24,3 +26,4 @@ const initialPlaces = [  // Начальная база places
     link: './img/content/sheregesh-gora-zelenaya.jpg'
   },
 ]
+
