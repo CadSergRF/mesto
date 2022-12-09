@@ -3,6 +3,7 @@ import { initialPlaces } from './places.js';
 
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
+const rootElem = document.querySelector('.root')      //
 const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
 const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
 const popupAddPlace = document.querySelector('#add-place'); // id Popup добавление картинки
@@ -55,13 +56,13 @@ function closePopupButton(event) {                //Закрытие любог�
   };
 };
 
-function closePopupByOverlay(event) {           // По клику на Oveerlay
+function closePopupByOverlay(event) {           // Закрытие по клику на Oveerlay
   if (event.target.classList.contains('popup_opened')) {
     closePopup(event.target);
   }
 };
 
-function closePopupByEsc(event) {
+function closePopupByEsc(event) {             // Закрытие по Esc
   if (event.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
   }
@@ -120,6 +121,6 @@ userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
 userProfileAddPlaceBtn.addEventListener('click', () => openPopup(popupAddPlace));
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
-document.querySelector('.root').addEventListener('keyup', closePopupByEsc);
+rootElem.addEventListener('keyup', closePopupByEsc);
 formEditProfile.addEventListener('submit', handleSubmitProfile);
 formAddPlace.addEventListener('submit', handleAddPlace);
