@@ -63,10 +63,10 @@
       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна добавления контента"></button>
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" name="addPlace">
-        <input type="text" placeholder="Название" class="popup__input popup__input_place_name" name="newPlaceName"
-          required>
-        <input type="URL" placeholder="Ссылка на картинку" class="popup__input popup__input_place_link"
-          name="newPlaceLink" required>
+        <input class="popup__input popup__input_place_name" type="text" placeholder="Название" name="newPlaceName" minlength="2" maxlength="30" required>
+        <span class="popup__input-error newPlaceName-error"></span>
+        <input class="popup__input popup__input_place_link" type="URL" placeholder="Ссылка на картинку" name="newPlaceLink" required>
+        <span class="popup__input-error newPlaceLink-error"></span>
         <button class="popup__save-btn" type="submit" aria-label="Кнопка сохранить изменения">Создать</button>
       </form>
     </div>
