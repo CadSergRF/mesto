@@ -1,8 +1,11 @@
 /* Переменные */
 import { initialPlaces } from './places.js';
+import { configValidation } from './configValidation.js';
+import { checkOpenedPopup } from './validate.js'
 
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
+const btnClosePopup = 'Escape';       // кнопка закрытия Popup
 const rootElem = document.querySelector('.root')      //
 const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
 const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
@@ -20,17 +23,9 @@ const popupImageBig = document.querySelector('.popup__image-big');  // Увел�
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
 
 /* Функции */
-function clearPopupErrorMessages(idPopup) {
-  const errorMessages = idPopup.querySelectorAll('.popup__input-error');
-  console.log(errorMessages);
-  errorMessages.forEach(item => {
-    item.textContent = '';
-  })
-};
-
 function openPopup(idPopup) {  // открытие popup
   idPopup.classList.add('popup_opened');
-  clearPopupErrorMessages(idPopup);
+  checkOpenedPopup(idPopup, configValidation);
 };
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
@@ -73,7 +68,7 @@ function closePopupByOverlay(event) {           // Закрытие по кли�
 };
 
 function closePopupByEsc(event) {             // Закрытие по Esc
-  if (event.key === 'Escape') {
+  if (event.key === btnClosePopup) {
     closePopup(document.querySelector('.popup_opened'));
   }
 };

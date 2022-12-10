@@ -53,4 +53,14 @@ function enableValidation(config) {
   })
 };
 
+export function checkOpenedPopup(idPopup, config) {
+  const form = idPopup.querySelector(config.formSelector);
+  const inputs = [...form.querySelectorAll(config.inputSelector)];
+  inputs.forEach((input) => {
+    hideErrorMessage(form, input, config);
+  });
+
+  toogleBtnDisabled(form, inputs, config);
+}
+
 enableValidation(configValidation);
