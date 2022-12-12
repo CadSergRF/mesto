@@ -16,6 +16,6 @@
   color: rgba(0, 0, 0, .2);
 }
 
-.popup__input:invalid {
+/* .popup__input:invalid {
   border-bottom: 1px solid #ff0000;
-}
+} */
