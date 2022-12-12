@@ -16,26 +16,23 @@ const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кн
 const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
 const userName = document.querySelector('.user-profile__name');
 const userJob = document.querySelector('.user-profile__job');
-// const errorMessages = document.querySelectorAll('.popup__input-error');
 const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
+let newPlaceName = '';
+let newPlaceLink = '';
 
 /* Функции */
 function openPopup(idPopup) {  // открытие popup
+  rootElem.addEventListener('keyup', closePopupByEsc);
   idPopup.classList.add('popup_opened');
-  checkOpenedPopup(idPopup, configValidation);
+  if (idPopup !== popupEnhanceImage) { checkOpenedPopup(idPopup, configValidation); } // для изображений check не запускаем
 };
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
   selectedForm.elements.editProfileName.value = userName.textContent;
   selectedForm.elements.editProFileJob.value = userJob.textContent;
-};
-
-function fillEnhanceImageValue(event) { // Увеличение картинок.
-  popupImageBig.src = event.target.src;
-  popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
 };
 
 function handleOpenProfilePopup() {   //Popup редактирования профиля
@@ -45,18 +42,27 @@ function handleOpenProfilePopup() {   //Popup редактирования пр�
 
 function handleBigImagePopup(event) {
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
-    fillEnhanceImageValue(event);
+    popupImageBig.src = event.target.src;
+    console.log(event.target.alt);
+    popupImageBig.alt = event.target.alt;
+    popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
     openPopup(popupEnhanceImage);
   }
 };
 
+function handleOpenAddPlacePopup() {
+  formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
+  openPopup(popupAddPlace);
+}
+
 function closePopup(idPopup) {    // Закрытие Popup
   idPopup.classList.remove('popup_opened');
+  rootElem.removeEventListener('keyup', closePopupByEsc);
 };
 
 function closePopupButton(event) {                //Закрытие любого Popup через крестик
   if (event.target.classList.contains('popup__close-btn')) {
-    event.target.closest('.popup').classList.remove('popup_opened');
+    closePopup(event.target.closest('.popup'));
     //можно и тут передавать переменную по id, но тогда придется делать конструкцию swith-case. Только увеличит код.
   };
 };
@@ -82,9 +88,10 @@ function handleSubmitProfile(event) {           /* Редактирование 
 
 function createPlace(placeData) {              // Создание нового place - принимает объект
   const placeElement = placeTemplateElement.querySelector('.places__item').cloneNode(true);
+  const placeImage = placeElement.querySelector('.place__image');
 
-  placeElement.querySelector('.place__image').src = placeData.link; // Ссылка на картинку
-  placeElement.querySelector('.place__image').alt = placeData.name; //Дополнительно прописываем alt для изображения
+  placeImage.src = placeData.link; // Ссылка на картинку
+  placeImage.alt = placeData.name; //Дополнительно прописываем alt для изображения
   placeElement.querySelector('.place__title').textContent = placeData.name; // Название place
 
   placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик like
@@ -100,8 +107,8 @@ function renderPlace(item) {
 
 function handleAddPlace(event) {                    // Добавление нового place
   event.preventDefault();                     // убираем стандартное событие
-  const newPlaceName = formAddPlace.elements.newPlaceName.value;
-  const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
+  newPlaceName = formAddPlace.elements.newPlaceName.value;
+  newPlaceLink = formAddPlace.elements.newPlaceLink.value;
   const newPlace = { name: newPlaceName, link: newPlaceLink };
   renderPlace(newPlace);
   formAddPlace.reset(); // Очистка полей формы
@@ -123,9 +130,9 @@ initialPlaces.forEach(elem => renderPlace(elem));     // Создание чер
 
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
-userProfileAddPlaceBtn.addEventListener('click', () => openPopup(popupAddPlace));
+userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
-rootElem.addEventListener('keyup', closePopupByEsc);
+
 formEditProfile.addEventListener('submit', handleSubmitProfile);
 formAddPlace.addEventListener('submit', handleAddPlace);
