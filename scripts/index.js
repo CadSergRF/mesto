@@ -43,7 +43,6 @@ function handleOpenProfilePopup() {   //Popup редактирования пр�
 function handleBigImagePopup(event) {
   if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
     popupImageBig.src = event.target.src;
-    console.log(event.target.alt);
     popupImageBig.alt = event.target.alt;
     popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
     openPopup(popupEnhanceImage);
