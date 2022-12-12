@@ -132,6 +132,5 @@ userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
 userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);
 popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
-
 formEditProfile.addEventListener('submit', handleSubmitProfile);
 formAddPlace.addEventListener('submit', handleAddPlace);
