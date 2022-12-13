@@ -20,14 +20,11 @@ const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
-let newPlaceName = '';
-let newPlaceLink = '';
 
 /* Функции */
 function openPopup(idPopup) {  // открытие popup
   rootElem.addEventListener('keyup', closePopupByEsc);
   idPopup.classList.add('popup_opened');
-  if (idPopup !== popupEnhanceImage) { checkOpenedPopup(idPopup, configValidation); } // для изображений check не запускаем
 };
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
@@ -37,6 +34,7 @@ function fillFormEditProfile(selectedForm) {  // Функция заполнен
 
 function handleOpenProfilePopup() {   //Popup редактирования профиля
   fillFormEditProfile(formEditProfile);
+  checkOpenedPopup(popupEditProfile, configValidation); // проверка начального заполнения полей. Кнопка Сохранить ? able : disable
   openPopup(popupEditProfile);
 };
 
@@ -51,6 +49,7 @@ function handleBigImagePopup(event) {
 
 function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
+  checkOpenedPopup(popupAddPlace, configValidation);
   openPopup(popupAddPlace);
 }
 
@@ -106,8 +105,8 @@ function renderPlace(item) {
 
 function handleAddPlace(event) {                    // Добавление нового place
   event.preventDefault();                     // убираем стандартное событие
-  newPlaceName = formAddPlace.elements.newPlaceName.value;
-  newPlaceLink = formAddPlace.elements.newPlaceLink.value;
+  const newPlaceName = formAddPlace.elements.newPlaceName.value;
+  const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
   const newPlace = { name: newPlaceName, link: newPlaceLink };
   renderPlace(newPlace);
   formAddPlace.reset(); // Очистка полей формы
