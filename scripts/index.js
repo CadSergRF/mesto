@@ -38,13 +38,11 @@ function handleOpenProfilePopup() {   //Popup редактирования пр�
   openPopup(popupEditProfile);
 };
 
-function handleBigImagePopup(event) {
-  if (event.target.classList.contains('place__image')) {  // Popup увеличение картинки по клику
-    popupImageBig.src = event.target.src;
-    popupImageBig.alt = event.target.alt;
-    popupImageTitle.textContent = event.currentTarget.querySelector('.place__title').textContent;
-    openPopup(popupEnhanceImage);
-  }
+function handleBigImagePopup(placeData) { // Popup увеличение картинки по клику - На вход объект
+  popupImageBig.src = placeData.link;
+  popupImageBig.alt = placeData.name;
+  popupImageTitle.textContent = placeData.name;
+  openPopup(popupEnhanceImage);
 };
 
 function handleOpenAddPlacePopup() {
@@ -94,7 +92,8 @@ function createPlace(placeData) {              // Создание нового 
 
   placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик like
   placeElement.querySelector('.place__delete').addEventListener('click', deletePlace); // Обработчик delete
-  placeElement.querySelector('.place').addEventListener('click', handleBigImagePopup); // Увеличение по клику
+  placeElement.querySelector('.place').addEventListener('click', () => handleBigImagePopup(placeData)); // Увеличение по клику
+  // так как обрабатывается весь place, то теперь необходимо запретить всплытие событий like & delete
 
   return placeElement;    // Возвращаем готовый элемент
 }
@@ -115,11 +114,13 @@ function handleAddPlace(event) {                    // Добавление но
 
 //Фунция отображения лайков
 function likePlace(event) {
+  event.stopPropagation(); // Запрет всплытия event
   event.target.classList.toggle('place__like_active');
 };
 
 // Функция удаления place
 function deletePlace(event) {
+  event.stopPropagation();
   event.target.closest('.places__item').remove();
 }
 
