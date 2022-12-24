@@ -3,6 +3,7 @@ import { initialPlaces } from './places.js';
 import { configValidation } from './configValidation.js';
 import { checkOpenedPopup } from './validate.js';
 import { Card } from './Card.js';
+import { FormValidator } from '.FormValidator.js';
 
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
