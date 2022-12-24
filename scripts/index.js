@@ -84,13 +84,13 @@ function handleSubmitProfile(event) {           /* Редактирование 
 }
 
 function renderPlace(item) {
-  const card = new Card(item, placeTemplateElement);
+  const card = new Card(item, placeTemplateElement, handleBigImagePopup);
   const newCard = card.createCard();
   placesListElement.prepend(newCard); // Добавляем элемент на страницу;
 }
 
-function handleAddPlace(event) {                    // Добавление нового place
-  event.preventDefault();                     // убираем стандартное событие
+function handleAddPlace(event) {    // Добавление нового place
+  event.preventDefault();   // убираем стандартное событие
   const newPlaceName = formAddPlace.elements.newPlaceName.value;
   const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
   const newPlace = { name: newPlaceName, link: newPlaceLink };

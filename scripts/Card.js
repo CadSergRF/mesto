@@ -1,11 +1,13 @@
 
 export class Card {
-  constructor(cardData, templateSelector) {
-    this._cardData = cardData;
+
+  constructor(cardData, templateSelector, handleBigImagePopup) {
+    this._cardData = cardData;    //  объект отдельной карточки
     this._templateSelector = templateSelector;
+    this._handleBigImagePopup = handleBigImagePopup;    //  функция попап изображения
   }
 
-  _getTemplate() {
+  _getTemplate() {    //  клонируем шаблон
     const cardElement = this._templateSelector
       .querySelector('.places__item')
       .cloneNode(true);
@@ -13,10 +15,10 @@ export class Card {
     return cardElement;
   }
 
-  _addListeners() {
+  _addListeners() {   //  добавляем слушатели
     this._cardLike.addEventListener('click', this._likeCard);
     this._cardDelete.addEventListener('click', this._deleteCard);
-    //this._cardFull.addEventListener('click', handleBigImagePopup(this._image, this._name));
+    this._cardFull.addEventListener('click', () => this._handleBigImagePopup(this._cardData));
   }
 
   _likeCard = (event) => {
@@ -25,7 +27,7 @@ export class Card {
   }
 
   _deleteCard = (event) => {
-    event.stopPropagation();
+    event.stopPropagation(); // Запрет всплытия event
     this._element.remove();
   }
 
@@ -35,6 +37,7 @@ export class Card {
     this._cardLike = this._element.querySelector('.place__like');
     this._cardDelete = this._element.querySelector('.place__delete');
     this._cardFull = this._element.querySelector('.place');
+
     this._cardImage.src = this._cardData.link;
     this._cardImage.alt = this._cardData.name;
     this._element.querySelector('.place__title').textContent = this._cardData.name;
