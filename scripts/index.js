@@ -1,7 +1,8 @@
 /* Переменные */
 import { initialPlaces } from './places.js';
 import { configValidation } from './configValidation.js';
-import { checkOpenedPopup } from './validate.js'
+import { checkOpenedPopup } from './validate.js';
+import { Card } from './Card.js';
 
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
@@ -82,24 +83,10 @@ function handleSubmitProfile(event) {           /* Редактирование 
   closePopup(popupEditProfile);
 }
 
-function createPlace(placeData) {              // Создание нового place - принимает объект
-  const placeElement = placeTemplateElement.querySelector('.places__item').cloneNode(true);
-  const placeImage = placeElement.querySelector('.place__image');
-
-  placeImage.src = placeData.link; // Ссылка на картинку
-  placeImage.alt = placeData.name; //Дополнительно прописываем alt для изображения
-  placeElement.querySelector('.place__title').textContent = placeData.name; // Название place
-
-  placeElement.querySelector('.place__like').addEventListener('click', likePlace);  // Обработчик like
-  placeElement.querySelector('.place__delete').addEventListener('click', deletePlace); // Обработчик delete
-  placeElement.querySelector('.place').addEventListener('click', () => handleBigImagePopup(placeData)); // Увеличение по клику
-  // так как обрабатывается весь place, то теперь необходимо запретить всплытие событий like & delete
-
-  return placeElement;    // Возвращаем готовый элемент
-}
-
 function renderPlace(item) {
-  placesListElement.prepend(createPlace(item)); // Добавляем элемент на страницу
+  const card = new Card(item, placeTemplateElement);
+  const newCard = card.createCard();
+  placesListElement.prepend(newCard); // Добавляем элемент на страницу;
 }
 
 function handleAddPlace(event) {                    // Добавление нового place
@@ -110,18 +97,6 @@ function handleAddPlace(event) {                    // Добавление но
   renderPlace(newPlace);
   formAddPlace.reset(); // Очистка полей формы
   closePopup(popupAddPlace);
-}
-
-//Фунция отображения лайков
-function likePlace(event) {
-  event.stopPropagation(); // Запрет всплытия event
-  event.target.classList.toggle('place__like_active');
-};
-
-// Функция удаления place
-function deletePlace(event) {
-  event.stopPropagation();
-  event.target.closest('.places__item').remove();
 }
 
 /* Загрузка начального контента на страницу */
