@@ -7,7 +7,7 @@ import { FormValidator } from './FormValidator.js';
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
 const btnClosePopup = 'Escape';       // кнопка закрытия Popup
-const rootElem = document.querySelector('.root')      //
+const rootElem = document.querySelector('.root')      // общий элемент
 const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
 const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
 const popupAddPlace = document.querySelector('#add-place'); // id Popup добавление картинки
