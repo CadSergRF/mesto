@@ -6,6 +6,8 @@ export class FormValidator {
     this._config = configValidation;
     this._formName = formName;
     this._inputs = [...this._formName.querySelectorAll(this._config.inputSelector)];
+
+    ++FormValidator.counter;
   }
 
   enableValidation() {
@@ -20,6 +22,8 @@ export class FormValidator {
       this._hideErrorMessage(input);
     })
     this._toogleBtnDisabled();
+
+    console.log(FormValidator.counter);
   }
 
   _checkValidityForm = () => {    //  метод валидации
