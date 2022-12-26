@@ -1,9 +1,9 @@
 /* Переменные */
 import { initialPlaces } from './places.js';
 import { configValidation } from './configValidation.js';
-import { checkOpenedPopup } from './validate.js';
+//import { checkOpenedPopup } from './validate.js';
 import { Card } from './Card.js';
-import { FormValidator } from '.FormValidator.js';
+import { FormValidator } from './FormValidator.js';
 
 const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 const formAddPlace = document.forms.addPlace;         // Форма добавления place
@@ -36,7 +36,11 @@ function fillFormEditProfile(selectedForm) {  // Функция заполнен
 
 function handleOpenProfilePopup() {   //Popup редактирования профиля
   fillFormEditProfile(formEditProfile);
-  checkOpenedPopup(popupEditProfile, configValidation); // проверка начального заполнения полей. Кнопка Сохранить ? able : disable
+
+  const profileIsValid = new FormValidator(configValidation, formEditProfile);
+  profileIsValid.enableValidation();
+
+  //checkOpenedPopup(popupEditProfile, configValidation); // проверка начального заполнения полей. Кнопка Сохранить ? able : disable
   openPopup(popupEditProfile);
 };
 
@@ -49,7 +53,10 @@ function handleBigImagePopup(placeData) { // Popup увеличение карт
 
 function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
-  checkOpenedPopup(popupAddPlace, configValidation);
+  //checkOpenedPopup(popupAddPlace, configValidation);
+  const newCardIsValid = new FormValidator(configValidation, formAddPlace);
+  newCardIsValid.enableValidation();
+
   openPopup(popupAddPlace);
 }
 
