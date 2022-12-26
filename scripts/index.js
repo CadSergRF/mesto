@@ -1,7 +1,6 @@
 /* Переменные */
-import { initialPlaces } from './places.js';
-import { configValidation } from './configValidation.js';
-//import { checkOpenedPopup } from './validate.js';
+import { initialPlaces } from './places.js';    //  начальные карточки
+import { configValidation } from './configValidation.js';   //  конфиг валидации
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
@@ -38,10 +37,8 @@ function handleOpenProfilePopup() {   //Popup редактирования пр�
   fillFormEditProfile(formEditProfile);
 
   const profileIsValid = new FormValidator(configValidation, formEditProfile);
-
+  profileIsValid.checkOpenedPopup();
   profileIsValid.enableValidation();
-  //profileIsValid.checkOpenedPopup();
-  //checkOpenedPopup(popupEditProfile, configValidation); // проверка начального заполнения полей. Кнопка Сохранить ? able : disable
   openPopup(popupEditProfile);
 };
 
@@ -54,7 +51,6 @@ function handleBigImagePopup(placeData) { // Popup увеличение карт
 
 function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
-  //checkOpenedPopup(popupAddPlace, configValidation);
   const newCardIsValid = new FormValidator(configValidation, formAddPlace);
   newCardIsValid.checkOpenedPopup();
   newCardIsValid.enableValidation();
