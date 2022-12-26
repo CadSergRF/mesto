@@ -38,8 +38,9 @@ function handleOpenProfilePopup() {   //Popup редактирования пр�
   fillFormEditProfile(formEditProfile);
 
   const profileIsValid = new FormValidator(configValidation, formEditProfile);
-  profileIsValid.enableValidation();
 
+  profileIsValid.enableValidation();
+  //profileIsValid.checkOpenedPopup();
   //checkOpenedPopup(popupEditProfile, configValidation); // проверка начального заполнения полей. Кнопка Сохранить ? able : disable
   openPopup(popupEditProfile);
 };
@@ -55,6 +56,7 @@ function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
   //checkOpenedPopup(popupAddPlace, configValidation);
   const newCardIsValid = new FormValidator(configValidation, formAddPlace);
+  newCardIsValid.checkOpenedPopup();
   newCardIsValid.enableValidation();
 
   openPopup(popupAddPlace);
