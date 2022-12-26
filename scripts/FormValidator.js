@@ -1,16 +1,11 @@
 export class FormValidator {
-
-  static counter = 0;
-
   constructor(configValidation, formName) {
     this._config = configValidation;
     this._formName = formName;
     this._inputs = [...this._formName.querySelectorAll(this._config.inputSelector)];
-
-    ++FormValidator.counter;
   }
 
-  enableValidation() {
+  enableValidation() {    //  публМетод валидации
     this._formName.addEventListener('submit', (evt) => {
       evt.preventDefault();   //  убираем стандарт evt
     })
@@ -22,8 +17,6 @@ export class FormValidator {
       this._hideErrorMessage(input);
     })
     this._toogleBtnDisabled();
-
-    console.log(FormValidator.counter);
   }
 
   _checkValidityForm = () => {    //  метод валидации
