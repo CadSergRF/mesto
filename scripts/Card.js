@@ -1,14 +1,14 @@
 
 export class Card {
 
-  constructor(cardData, templateSelector, handleBigImagePopup) {
+  constructor(cardData, template, handleBigImagePopup) {
     this._cardData = cardData;    //  объект отдельной карточки
-    this._templateSelector = templateSelector;
+    this.template = template;
     this._handleBigImagePopup = handleBigImagePopup;    //  функция попап изображения
   }
 
   _getTemplate() {    //  клонируем шаблон
-    const cardElement = this._templateSelector
+    const cardElement = this.template
       .querySelector('.places__item')
       .cloneNode(true);
 
