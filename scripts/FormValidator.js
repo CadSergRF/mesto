@@ -1,5 +1,7 @@
 export class FormValidator {
 
+  static counter = 0;
+
   constructor(configValidation, formName) {
     this._config = configValidation;
     this._formName = formName;
