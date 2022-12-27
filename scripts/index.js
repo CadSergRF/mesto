@@ -38,7 +38,6 @@ function fillFormEditProfile(selectedForm) {  // Функция заполнен
 function handleOpenProfilePopup() {   //Popup редактирования профиля
   fillFormEditProfile(formEditProfile);
   profileIsValid.checkOpenedPopup();
-  profileIsValid.enableValidation();
   openPopup(popupEditProfile);
 };
 
@@ -52,7 +51,6 @@ function handleBigImagePopup(placeData) { // Popup увеличение карт
 function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
   newCardIsValid.checkOpenedPopup();
-  newCardIsValid.enableValidation();
 
   openPopup(popupAddPlace);
 }
@@ -107,6 +105,9 @@ function handleAddPlace(event) {    // Добавление нового place
 /* Загрузка начального контента на страницу */
 initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
 
+/* Валидация форм */
+profileIsValid.enableValidation();
+newCardIsValid.enableValidation();
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
 userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);
