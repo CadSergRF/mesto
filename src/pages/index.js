@@ -1,26 +1,11 @@
 /* Переменные */
-import { initialPlaces } from './places.js';    //  начальные карточки
-import { configValidation } from './configValidation.js';   //  конфиг валидации
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { initialPlaces } from '../utils/places.js';    //  начальные карточки
+import { configValidation } from '../utils/configs.js';   //  конфиг валидации
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { formEditProfile,
+  formAddPlace} from '../utils/pageElements.js'
 
-const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
-const formAddPlace = document.forms.addPlace;         // Форма добавления place
-const btnClosePopup = 'Escape';       // кнопка закрытия Popup
-const rootElem = document.querySelector('.root')      // общий элемент
-const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
-const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
-const popupAddPlace = document.querySelector('#add-place'); // id Popup добавление картинки
-const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
-const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
-const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
-const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
-const userName = document.querySelector('.user-profile__name');
-const userJob = document.querySelector('.user-profile__job');
-const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
-const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
-const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
-const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
 

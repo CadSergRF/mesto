@@ -1,0 +1,17 @@
+export const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
+export const formAddPlace = document.forms.addPlace;         // Форма добавления place
+export const btnClosePopup = 'Escape';       // кнопка закрытия Popup
+export const rootElem = document.querySelector('.root');      // общий элемент
+export const popupList = document.querySelectorAll('.popup');    // для общих правил. Обращение к определенному будет через id.
+export const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
+export const popupAddPlace = document.querySelector('#add-place'); // id Popup добавление картинки
+export const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
+export const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
+export const popupCloseBtnList = document.querySelectorAll('.popup__close-btn'); //Кнопка закрытия PopUp
+export const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
+export const userName = document.querySelector('.user-profile__name');
+export const userJob = document.querySelector('.user-profile__job');
+export const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
+export const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
+export const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
+export const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig

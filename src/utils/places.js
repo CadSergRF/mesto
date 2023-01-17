@@ -1,6 +1,4 @@
-export { initialPlaces };
-
-const initialPlaces = [  // Начальная база places
+export const initialPlaces = [  // Начальная база places
   {
     name: 'Кузнецкий Алатау',
     link: './img/content/kuzneckij-alatau.jpg'
