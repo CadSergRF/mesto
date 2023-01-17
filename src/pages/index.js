@@ -21,11 +21,13 @@ const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'
 const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
 const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
 const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
+const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
+const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
 
 /* Функции */
-function openPopup(idPopup) {  // открытие popup
+function openPopup(popup) {  // открытие popup
   rootElem.addEventListener('keyup', closePopupByEsc);
-  idPopup.classList.add('popup_opened');
+  popup.classList.add('popup_opened');
 };
 
 function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
@@ -35,10 +37,7 @@ function fillFormEditProfile(selectedForm) {  // Функция заполнен
 
 function handleOpenProfilePopup() {   //Popup редактирования профиля
   fillFormEditProfile(formEditProfile);
-
-  const profileIsValid = new FormValidator(configValidation, formEditProfile);
   profileIsValid.checkOpenedPopup();
-  profileIsValid.enableValidation();
   openPopup(popupEditProfile);
 };
 
@@ -51,15 +50,13 @@ function handleBigImagePopup(placeData) { // Popup увеличение карт
 
 function handleOpenAddPlacePopup() {
   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
-  const newCardIsValid = new FormValidator(configValidation, formAddPlace);
   newCardIsValid.checkOpenedPopup();
-  newCardIsValid.enableValidation();
 
   openPopup(popupAddPlace);
 }
 
-function closePopup(idPopup) {    // Закрытие Popup
-  idPopup.classList.remove('popup_opened');
+function closePopup(popup) {    // Закрытие Popup
+  popup.classList.remove('popup_opened');
   rootElem.removeEventListener('keyup', closePopupByEsc);
 };
 
@@ -108,6 +105,9 @@ function handleAddPlace(event) {    // Добавление нового place
 /* Загрузка начального контента на страницу */
 initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
 
+/* Валидация форм */
+profileIsValid.enableValidation();
+newCardIsValid.enableValidation();
 /* Обработчики событий */
 userProfileEditBtn.addEventListener('click', handleOpenProfilePopup);
 userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);

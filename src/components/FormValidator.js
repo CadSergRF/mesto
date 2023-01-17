@@ -3,6 +3,7 @@ export class FormValidator {
     this._config = configValidation;
     this._formName = formName;
     this._inputs = [...this._formName.querySelectorAll(this._config.inputSelector)];
+    this._submitButton = this._formName.querySelector(this._config.submitButtonSelector); // ищем кнопку
   }
 
   enableValidation() {    //  публМетод валидации
@@ -46,15 +47,14 @@ export class FormValidator {
   }
 
   _toogleBtnDisabled() {    //  Валидность на кнопке
-    const button = this._formName.querySelector(this._config.submitButtonSelector); // ищем кнопку
     const isValidForm = this._inputs.every((input) => input.validity.valid); // ВСе инпуты валидны???
     if (isValidForm) {
-      button.classList.remove(this._config.inactiveButtonClass);
-      button.disabled = '';
+      this._submitButton.classList.remove(this._config.inactiveButtonClass);
+      this._submitButton.disabled = '';
     }
     else {
-      button.classList.add(this._config.inactiveButtonClass);
-      button.disabled = 'disabled';
+      this._submitButton.classList.add(this._config.inactiveButtonClass);
+      this._submitButton.disabled = 'disabled';
     }
   }
 
