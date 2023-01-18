@@ -47,94 +47,14 @@ popupEditUserInfo.setEventListeners();
 
 userProfileEditBtn.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
-  formEditProfile.elements.editProfileName.value = userData.name;
-  formEditProfile.elements.editProFileJob.value = userData.job;
+  formEditProfile.elements.editProfileName.value = userData.editProfileName;
+  formEditProfile.elements.editProFileJob.value = userData.editProFileJob;
   profileIsValid.checkOpenedPopup();
   popupEditUserInfo.open();
 })
 
-/* Функции */
-// function openPopup(popup) {  // открытие popup
-//   rootElem.addEventListener('keyup', closePopupByEsc);
-//   popup.classList.add('popup_opened');
-// };
-
-// function fillFormEditProfile(selectedForm) {  // Функция заполнения полей form текущими значениями
-//   selectedForm.elements.editProfileName.value = userName.textContent;
-//   selectedForm.elements.editProFileJob.value = userJob.textContent;
-// };
-
-// function handleOpenProfilePopup() {   //Popup редактирования профиля
-//   fillFormEditProfile(formEditProfile);
-//   profileIsValid.checkOpenedPopup();
-//   openPopup(popupEditProfile);
-// };
-
-// function handleBigImagePopup(placeData) { // Popup увеличение картинки по клику - На вход объект
-//   popupImageBig.src = placeData.link;
-//   popupImageBig.alt = placeData.name;
-//   popupImageTitle.textContent = placeData.name;
-//   openPopup(popupEnhanceImage);
-// };
-
-// function handleOpenAddPlacePopup() {
-//   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
-//   newCardIsValid.checkOpenedPopup();
-
-//   openPopup(popupAddPlace);
-// }
-
-// function closePopup(popup) {    // Закрытие Popup
-//   popup.classList.remove('popup_opened');
-//   rootElem.removeEventListener('keyup', closePopupByEsc);
-// };
-
-// function closePopupButton(event) {                //Закрытие любого Popup через крестик
-//   if (event.target.classList.contains('popup__close-btn')) {
-//     closePopup(event.target.closest('.popup'));
-//     //можно и тут передавать переменную по id, но тогда придется делать конструкцию swith-case. Только увеличит код.
-//   };
-// };
-
-// function closePopupByOverlay(event) {           // Закрытие по клику на Oveerlay
-//   if (event.target.classList.contains('popup_opened')) {
-//     closePopup(event.target);
-//   }
-// };
-
-// function closePopupByEsc(event) {             // Закрытие по Esc
-//   if (event.key === btnClosePopup) {
-//     closePopup(document.querySelector('.popup_opened'));
-//   }
-// };
-
-// function handleSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
-//   event.preventDefault();
-//   userName.textContent = formEditProfile.elements.editProfileName.value;   /* Сохраняем введенные данные */
-//   userJob.textContent = formEditProfile.elements.editProFileJob.value;
-//   closePopup(popupEditProfile);
-// }
-
-// function renderPlace(item) {
-//   const card = new Card(item, placeTemplateElement, handleBigImagePopup);
-//   const newCard = card.createCard();
-//   placesListElement.prepend(newCard); // Добавляем элемент на страницу;
-// }
-
-// function handleAddPlace(event) {    // Добавление нового place
-//   event.preventDefault();   // убираем стандартное событие
-//   const newPlaceName = formAddPlace.elements.newPlaceName.value;
-//   const newPlaceLink = formAddPlace.elements.newPlaceLink.value;
-//   const newPlace = { name: newPlaceName, link: newPlaceLink };
-//   renderPlace(newPlace);
-//   formAddPlace.reset(); // Очистка полей формы
-//   closePopup(popupAddPlace);
-// }
-
-/* Загрузка начального контента на страницу */
-//initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
 function renderPlace(item) {
-  const card = new Card(item, placeTemplateElement, () => {});
+  const card = new Card(item, placeTemplateElement, () => { });
   const newCard = card.createCard();
   return newCard;
 }
@@ -147,7 +67,6 @@ const places = new Section({
   , placesListElement);
 
 places.renderPlace();
-
 
 /* Валидация форм */
 profileIsValid.enableValidation();

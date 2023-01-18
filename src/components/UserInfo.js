@@ -6,14 +6,14 @@ export class UserInfo {
 
   getUserInfo() {
     const userData = {
-      name: this._userName.textContent,
-      job: this._userJob.textContent
+      editProfileName: this._userName.textContent,
+      editProFileJob: this._userJob.textContent
     }
     return userData;
   }
 
   setUserInfo(userData) {
-    this._userName.textContent = userData.name;
-    this._userJob.textContent = userData.job;
+    this._userName.textContent = userData.editProfileName;
+    this._userJob.textContent = userData.editProFileJob;
   }
 }

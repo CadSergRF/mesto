@@ -1,10 +1,10 @@
 
 export class Card {
 
-  constructor(cardData, template, handleBigImagePopup) {
+  constructor(cardData, template, handleCardClick) {
     this._cardData = cardData;    //  объект отдельной карточки
     this.template = template;
-    this._handleBigImagePopup = handleBigImagePopup;    //  функция попап изображения
+    this.handleCardClick = handleCardClick;    //  функция попап изображения
   }
 
   _getTemplate() {    //  клонируем шаблон
