@@ -1,7 +1,7 @@
 
 export class Card {
 
-  constructor(cardData, template, handleCardClick) {
+  constructor(cardData, template, { handleCardClick }) {
     this._cardData = cardData;    //  объект отдельной карточки
     this.template = template;
     this._handleCardClick = handleCardClick;    //  функция попап изображения

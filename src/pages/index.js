@@ -12,6 +12,7 @@ import {
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
@@ -53,10 +54,16 @@ userProfileEditBtn.addEventListener('click', () => {
   popupEditUserInfo.open();
 })
 
-
+const popupWithImage = new PopupWithImage(popupEnhanceImage);
+popupWithImage.setEventListeners();
 
 function renderPlace(item) {
-  const card = new Card(item, placeTemplateElement, () => { });
+  const card = new Card(item, placeTemplateElement,
+    {
+      handleCardClick: (item) => {
+        popupWithImage.open(item);
+      }
+    });
   const newCard = card.createCard();
   return newCard;
 }
