@@ -1,4 +1,5 @@
-import { btnClosePopup } from '../utils/pageElements.js'
+import { btnClosePopup,
+rootElem } from '../utils/pageElements.js'
 
 export class Popup {
   constructor(popupSelector) {
@@ -7,27 +8,29 @@ export class Popup {
   }
 
   open() {
-    rootElem.addEventListener('keyup', _handleEscClose);
+    rootElem.addEventListener('keyup', this._handleEscClose);
     this._popupSelector.classList.add('popup_opened');
   }
 
   close() {
     this._popupSelector.classList.remove('popup_opened');
-    rootElem.removeEventListener('keyup', _handleEscClose);
+    rootElem.removeEventListener('keyup', this._handleEscClose);
   }
 
   _handleEscClose(event) {             // Закрытие по Esc
     if (event.key === btnClosePopup) {
-      this._close();
+      this.close();
     }
   };
 
   setEventListeners() {
-    const popupCloseBtn = this._popupSelector.querySelector('popup__close-btn');
-    popupCloseBtn.addEventListener('click', this._close());
+    const popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');
+    popupCloseBtn.addEventListener('click', () => {
+      this.close();
+    });
     this._popupSelector.addEventListener('click', (event) => {
       if (event.target.classList.contains('popup_opened')) {
-        this._close();
+        this.close();
       }
     });
   }
