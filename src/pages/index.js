@@ -3,12 +3,15 @@ import { initialPlaces } from '../utils/places.js';    //  начальные к
 import { configValidation } from '../utils/configs.js';   //  конфиг валидации
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { formEditProfile, formAddPlace, btnClosePopup, rootElem, popupList, popupEditProfile, popupAddPlaceElem, popupEnhanceImage, placeTemplateElement,
+import {
+  formEditProfile, formAddPlace, btnClosePopup, rootElem, popupList, popupEditProfile, popupAddPlaceElem, popupEnhanceImage, placeTemplateElement,
   popupCloseBtnList, userProfileEditBtn, userName, userJob, userProfileAddPlaceBtn,
   placesListElement, popupImageBig,
-  popupImageTitle }  from '../utils/pageElements.js';
+  popupImageTitle
+} from '../utils/pageElements.js';
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
@@ -27,6 +30,28 @@ userProfileAddPlaceBtn.addEventListener('click', () => {
   newCardIsValid.checkOpenedPopup();
   popupAddPlace.open();
 });
+
+const userInfo = new UserInfo({
+  userNameSelector: '.user-profile__name',
+  userJobSelector: '.user-profile__job'
+});
+const popupEditUserInfo = new PopupWithForm({
+  handleSubmitForm: (userData) => {
+    userInfo.setUserInfo(userData);
+    popupEditUserInfo.close();
+  }
+},
+  popupEditProfile);
+
+popupEditUserInfo.setEventListeners();
+
+userProfileEditBtn.addEventListener('click', () => {
+  const userData = userInfo.getUserInfo();
+  formEditProfile.elements.editProfileName.value = userData.name;
+  formEditProfile.elements.editProFileJob.value = userData.job;
+  profileIsValid.checkOpenedPopup();
+  popupEditUserInfo.open();
+})
 
 /* Функции */
 // function openPopup(popup) {  // открытие popup
@@ -83,12 +108,12 @@ userProfileAddPlaceBtn.addEventListener('click', () => {
 //   }
 // };
 
-function handleSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
-  event.preventDefault();
-  userName.textContent = formEditProfile.elements.editProfileName.value;   /* Сохраняем введенные данные */
-  userJob.textContent = formEditProfile.elements.editProFileJob.value;
-  closePopup(popupEditProfile);
-}
+// function handleSubmitProfile(event) {           /* Редактирование профиля - сохранение изменений */
+//   event.preventDefault();
+//   userName.textContent = formEditProfile.elements.editProfileName.value;   /* Сохраняем введенные данные */
+//   userJob.textContent = formEditProfile.elements.editProFileJob.value;
+//   closePopup(popupEditProfile);
+// }
 
 // function renderPlace(item) {
 //   const card = new Card(item, placeTemplateElement, handleBigImagePopup);
@@ -109,7 +134,7 @@ function handleSubmitProfile(event) {           /* Редактирование 
 /* Загрузка начального контента на страницу */
 //initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
 function renderPlace(item) {
-  const card = new Card(item, placeTemplateElement, handleBigImagePopup);
+  const card = new Card(item, placeTemplateElement, () => {});
   const newCard = card.createCard();
   return newCard;
 }
@@ -119,7 +144,7 @@ const places = new Section({
     places.addItem(renderPlace(item));
   }
 }
-, placesListElement);
+  , placesListElement);
 
 places.renderPlace();
 
@@ -132,5 +157,5 @@ newCardIsValid.enableValidation();
 // userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);
 // popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 // popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
-formEditProfile.addEventListener('submit', handleSubmitProfile);
-formAddPlace.addEventListener('submit', handleAddPlace);
+// formEditProfile.addEventListener('submit', handleSubmitProfile);
+// formAddPlace.addEventListener('submit', handleAddPlace);

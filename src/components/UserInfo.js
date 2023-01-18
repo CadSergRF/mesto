@@ -9,6 +9,7 @@ export class UserInfo {
       name: this._userName.textContent,
       job: this._userJob.textContent
     }
+    return userData;
   }
 
   setUserInfo(userData) {
