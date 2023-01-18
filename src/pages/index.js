@@ -26,7 +26,7 @@ popupAddPlace.setEventListeners();
 userProfileAddPlaceBtn.addEventListener('click', () => {
   newCardIsValid.checkOpenedPopup();
   popupAddPlace.open();
-})
+});
 
 /* Функции */
 // function openPopup(popup) {  // открытие popup
@@ -45,12 +45,12 @@ userProfileAddPlaceBtn.addEventListener('click', () => {
 //   openPopup(popupEditProfile);
 // };
 
-function handleBigImagePopup(placeData) { // Popup увеличение картинки по клику - На вход объект
-  popupImageBig.src = placeData.link;
-  popupImageBig.alt = placeData.name;
-  popupImageTitle.textContent = placeData.name;
-  openPopup(popupEnhanceImage);
-};
+// function handleBigImagePopup(placeData) { // Popup увеличение картинки по клику - На вход объект
+//   popupImageBig.src = placeData.link;
+//   popupImageBig.alt = placeData.name;
+//   popupImageTitle.textContent = placeData.name;
+//   openPopup(popupEnhanceImage);
+// };
 
 // function handleOpenAddPlacePopup() {
 //   formAddPlace.reset(); // Очистка полей формы. Т.к. если повторно открыть форму сохраняются прошлые не валидные значения
@@ -132,5 +132,5 @@ newCardIsValid.enableValidation();
 // userProfileAddPlaceBtn.addEventListener('click', handleOpenAddPlacePopup);
 // popupCloseBtnList.forEach(elem => elem.addEventListener('click', closePopupButton));
 // popupList.forEach(elem => elem.addEventListener('click', closePopupByOverlay));
-// formEditProfile.addEventListener('submit', handleSubmitProfile);
-// formAddPlace.addEventListener('submit', handleAddPlace);
+formEditProfile.addEventListener('submit', handleSubmitProfile);
+formAddPlace.addEventListener('submit', handleAddPlace);
