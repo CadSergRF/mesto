@@ -53,6 +53,8 @@ userProfileEditBtn.addEventListener('click', () => {
   popupEditUserInfo.open();
 })
 
+
+
 function renderPlace(item) {
   const card = new Card(item, placeTemplateElement, () => { });
   const newCard = card.createCard();
