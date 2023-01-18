@@ -3,8 +3,11 @@ import { initialPlaces } from '../utils/places.js';    //  начальные к
 import { configValidation } from '../utils/configs.js';   //  конфиг валидации
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { formEditProfile,
-  formAddPlace} from '../utils/pageElements.js'
+import { formEditProfile, formAddPlace, btnClosePopup, rootElem, popupList, popupEditProfile, popupAddPlace, popupEnhanceImage, placeTemplateElement,
+  popupCloseBtnList, userProfileEditBtn, userName, userJob, userProfileAddPlaceBtn,
+  placesListElement, popupImageBig,
+  popupImageTitle }  from '../utils/pageElements.js'
+import { Section } from '../components/Section.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
@@ -71,11 +74,11 @@ function handleSubmitProfile(event) {           /* Редактирование 
   closePopup(popupEditProfile);
 }
 
-function renderPlace(item) {
-  const card = new Card(item, placeTemplateElement, handleBigImagePopup);
-  const newCard = card.createCard();
-  placesListElement.prepend(newCard); // Добавляем элемент на страницу;
-}
+// function renderPlace(item) {
+//   const card = new Card(item, placeTemplateElement, handleBigImagePopup);
+//   const newCard = card.createCard();
+//   placesListElement.prepend(newCard); // Добавляем элемент на страницу;
+// }
 
 function handleAddPlace(event) {    // Добавление нового place
   event.preventDefault();   // убираем стандартное событие
@@ -88,7 +91,22 @@ function handleAddPlace(event) {    // Добавление нового place
 }
 
 /* Загрузка начального контента на страницу */
-initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
+//initialPlaces.forEach(elem => renderPlace(elem));     // Создание через объект
+function renderPlace(item) {
+  const card = new Card(item, placeTemplateElement, handleBigImagePopup);
+  const newCard = card.createCard();
+  return newCard;
+}
+const places = new Section({
+  items: initialPlaces,
+  renderer: (item) => {
+    places.addItem(renderPlace(item));
+  }
+}
+, placesListElement);
+
+places.renderPlace();
+
 
 /* Валидация форм */
 profileIsValid.enableValidation();
