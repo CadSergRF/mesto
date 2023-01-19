@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
   <title lang="en">Mesto</title>
 </head>
@@ -13,13 +13,14 @@
 <body class="root">
 
   <header class="header root__container">
-    <img class="logo header__logo" src="./img/logo.svg" alt="Логотип">
+    <img class="logo header__logo" src="<%=require('./img/logo.svg')%>" alt="Логотип">
+    <!-- <img class="logo header__logo" src="<%=require('./img/logo.svg')%>" alt="Логотип"> -->
   </header>
 
   <main class="root__container">
     <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
-      <img class="user-profile__photo" src="./img/avatar.jpg" alt="Аватар">
+      <img class="user-profile__photo" src="<%=require('./img/avatar.jpg')%>" alt="Аватар">
 
       <div class="user-profile__info-wrapper">
         <h1 class="user-profile__name">Жак-Ив Кусто</h1>
@@ -93,7 +94,7 @@
     </li>
   </template>
 
-  <script src="./pages/index.js" type="module" defer></script>
+  <!-- <script src="./pages/index.js" type="module" defer></script> -->
 </body>
 
 </html>

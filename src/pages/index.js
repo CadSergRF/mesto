@@ -1,4 +1,4 @@
-/* Переменные */
+import './index.css'; //  импорт объединенных стилей
 import { initialPlaces } from '../utils/places.js';    //  начальные карточки
 import { configValidation } from '../utils/configs.js';   //  конфиг валидации
 import {

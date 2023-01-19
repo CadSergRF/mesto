@@ -1,27 +1,34 @@
+import alatauImage from '../img/content/kuzneckij-alatau.jpg';
+import baykalImage from '../img/content/ozero-baykal.jpg';
+import stolbiImage from '../img/content/krasnoyarskie-stolbi.jpg';
+import yarikImage from '../img/content/pereval-katu-yarik.jpg';
+import teleckoeImage from '../img/content/ozero-teleckoe.jpg';
+import zelenayaImage from '../img/content/sheregesh-gora-zelenaya.jpg';
+
 export const initialPlaces = [  // Начальная база places
   {
     name: 'Кузнецкий Алатау',
-    link: './img/content/kuzneckij-alatau.jpg'
+    link: alatauImage
   },
   {
     name: 'Озеро Байкал',
-    link: './img/content/ozero-baykal.jpg'
+    link: baykalImage
   },
   {
     name: 'Красноярские столбы',
-    link: './img/content/krasnoyarskie-stolbi.jpg'
+    link: stolbiImage
   },
   {
     name: 'Перевал Кату-ярык',
-    link: './img/content/pereval-katu-yarik.jpg'
+    link: yarikImage
   },
   {
     name: 'Телецкое озеро',
-    link: './img/content/ozero-teleckoe.jpg'
+    link: teleckoeImage
   },
   {
     name: 'Шерегеш. Гора Зеленая',
-    link: './img/content/sheregesh-gora-zelenaya.jpg'
+    link: zelenayaImage
   },
 ]
 
