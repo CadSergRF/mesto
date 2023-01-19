@@ -1,6 +1,4 @@
-
 export class Card {
-
   constructor(cardData, template, { handleCardClick }) {
     this._cardData = cardData;    //  объект отдельной карточки
     this.template = template;

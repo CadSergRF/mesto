@@ -1,5 +1,4 @@
-import { btnClosePopup,
-rootElem } from '../utils/pageElements.js'
+import { btnClosePopup, rootElem } from '../utils/pageElements.js'
 
 export class Popup {
   constructor(popupSelector) {
@@ -24,11 +23,11 @@ export class Popup {
   };
 
   setEventListeners() {
-    const popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');
+    const popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');   //закрытие на крест
     popupCloseBtn.addEventListener('click', () => {
       this.close();
     });
-    this._popupSelector.addEventListener('click', (event) => {
+    this._popupSelector.addEventListener('click', (event) => {  // Закрытие на оверлей
       if (event.target.classList.contains('popup_opened')) {
         this.close();
       }
