@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
   <title lang="en">Mesto</title>
 </head>
@@ -13,13 +12,13 @@
 <body class="root">
 
   <header class="header root__container">
-    <img class="logo header__logo" src="./img/logo.svg" alt="Логотип">
+    <img class="logo header__logo" src="<%=require('./img/logo.svg')%>" alt="Логотип">
   </header>
 
   <main class="root__container">
     <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
-      <img class="user-profile__photo" src="./img/avatar.jpg" alt="Аватар">
+      <img class="user-profile__photo" src="<%=require('./img/avatar.jpg')%>" alt="Аватар">
 
       <div class="user-profile__info-wrapper">
         <h1 class="user-profile__name">Жак-Ив Кусто</h1>
@@ -63,10 +62,10 @@
       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна добавления контента"></button>
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" name="addPlace">
-        <input class="popup__input popup__input_place_name" type="text" placeholder="Название" name="newPlaceName" minlength="2" maxlength="30" required>
-        <span class="popup__input-error newPlaceName-error"></span>
-        <input class="popup__input popup__input_place_link" type="URL" placeholder="Ссылка на картинку" name="newPlaceLink" required>
-        <span class="popup__input-error newPlaceLink-error"></span>
+        <input class="popup__input popup__input_place_name" type="text" placeholder="Название" name="name" minlength="2" maxlength="30" required>
+        <span class="popup__input-error name-error"></span>
+        <input class="popup__input popup__input_place_link" type="URL" placeholder="Ссылка на картинку" name="link" required>
+        <span class="popup__input-error link-error"></span>
         <button class="popup__save-btn" type="submit" aria-label="Кнопка сохранить изменения">Создать</button>
       </form>
     </div>
@@ -93,11 +92,6 @@
     </li>
   </template>
 
-  <!-- <script src="./scripts/places.js" defer></script> -->
-  <script src="./scripts/index.js" type="module" defer></script>
-  <!--
-    <script src="./scripts/validate.js" type="module" defer></script>
-  -->
 </body>
 
 </html>

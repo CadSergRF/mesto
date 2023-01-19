@@ -1,0 +1,13 @@
+export const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
+export const formAddPlace = document.forms.addPlace;         // Форма добавления place
+export const btnClosePopup = 'Escape';       // кнопка закрытия Popup
+export const rootElem = document.querySelector('.root');      // общий элемент
+export const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
+export const popupAddPlaceElem = document.querySelector('#add-place'); // id Popup добавление картинки
+export const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
+export const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
+export const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
+export const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
+export const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place
+export const popupImageBig = document.querySelector('.popup__image-big');  // Увеличенная картинка
+export const popupImageTitle = document.querySelector('.popup__image-title'); // Подпись к popupImageBig
