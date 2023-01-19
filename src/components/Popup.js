@@ -1,5 +1,3 @@
-import { btnClosePopup, rootElem } from '../utils/pageElements.js'
-
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
@@ -7,17 +5,17 @@ export class Popup {
   }
 
   open() {
-    rootElem.addEventListener('keyup', this._handleEscClose);
+    document.addEventListener('keyup', this._handleEscClose);
     this._popupSelector.classList.add('popup_opened');
   }
 
   close() {
     this._popupSelector.classList.remove('popup_opened');
-    rootElem.removeEventListener('keyup', this._handleEscClose);
+    document.removeEventListener('keyup', this._handleEscClose);
   }
 
   _handleEscClose(event) {             // Закрытие по Esc
-    if (event.key === btnClosePopup) {
+    if (event.key === 'Escape') {
       this.close();
     }
   };

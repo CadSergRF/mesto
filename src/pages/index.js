@@ -19,7 +19,7 @@ newCardIsValid.enableValidation();
 
 const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
   handleSubmitForm: (placeData) => {
-    placesListElement.prepend(renderPlace(placeData));
+    places.addItem(renderPlace(placeData));   // добавление новой карточки через экземпляр Section
     popupAddPlace.close();
   }
 },
@@ -48,9 +48,8 @@ const popupEditUserInfo = new PopupWithForm({   //экз. формы редак�
 popupEditUserInfo.setEventListeners();
 
 userProfileEditBtn.addEventListener('click', () => {    // Кнопка открытия формы редактирования профиля
-  const userData = userInfo.getUserInfo();
-  formEditProfile.elements.editProfileName.value = userData.editProfileName;
-  formEditProfile.elements.editProFileJob.value = userData.editProFileJob;
+  const userData = userInfo.getUserInfo();    // получаем данные профиля
+  popupEditUserInfo.setInputValues(userData);   //  вставляем данные в форму
   profileIsValid.checkOpenedPopup();
   popupEditUserInfo.open();
 })
@@ -58,7 +57,7 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
 const popupWithImage = new PopupWithImage(popupEnhanceImage);   //  экз. формы большого img
 popupWithImage.setEventListeners();
 
-function renderPlace(item) {
+function renderPlace(item) {    // рендер карточки
   const card = new Card(item, placeTemplateElement,
     {
       handleCardClick: (item) => {
