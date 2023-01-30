@@ -11,11 +11,39 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { Api } from '../components/Api';
+// import { Api } from '../components/Api.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 profileIsValid.enableValidation();
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
 newCardIsValid.enableValidation();
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
+  headers: {
+    authorization: '03dc3376-ddee-4eae-b74f-6570ee2c94e8',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards()
+  .then((result) => {
+    console.log('карточки');
+    console.log(result);// обрабатываем результат
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
+
+  api.getUserInfo()
+  .then((result) => {
+    console.log('юзер инфо');
+    console.log(result);// обрабатываем результат
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
 
 const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
   handleSubmitForm: (placeData) => {
