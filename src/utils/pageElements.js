@@ -3,6 +3,7 @@ export const formAddPlace = document.forms.addPlace;         // Форма до�
 export const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
 export const popupAddPlaceElem = document.querySelector('#add-place'); // id Popup добавление картинки
 export const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
+export const popupConfirmChanges = document.querySelector('#confirm-popup'); // id Popup подтверждения действия
 export const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
 export const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
 export const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place

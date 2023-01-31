@@ -1,8 +1,9 @@
 export class Card {
-  constructor(cardData, template, { handleCardClick }) {
+  constructor(cardData, template, { handleCardClick, handleCardDelete }) {
     this._cardData = cardData;    //  объект отдельной карточки
     this.template = template;
     this._handleCardClick = handleCardClick;    //  функция попап изображения
+    this._handleCardDelete = handleCardDelete;
   }
 
   _getTemplate() {    //  клонируем шаблон
@@ -15,8 +16,9 @@ export class Card {
 
   _addListeners() {   //  добавляем слушатели
     this._cardLike.addEventListener('click', this._likeCard);
-    this._cardDelete.addEventListener('click', this._deleteCard);
+    // this._cardDelete.addEventListener('click', this._deleteCard);
     this._cardFull.addEventListener('click', () => this._handleCardClick(this._cardData));
+    this._cardDelete.addEventListener('click', (event) => this._handleCardDelete(event, this._element));
   }
 
   _likeCard = (event) => {
