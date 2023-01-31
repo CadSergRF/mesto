@@ -36,10 +36,7 @@ const userInfo = new UserInfo({   // экз. Данные профиля
 
 api.getUserInfo()   //  Пролучаем инфо о пользователе
   .then((userData) => {
-    userInfo.setUserInfo({
-      editProfileName: userData.name,
-      editProFileJob: userData.about
-    });
+    userInfo.setUserInfo(userData);
   })
   .catch((err) => {
     console.log(err);
@@ -47,8 +44,20 @@ api.getUserInfo()   //  Пролучаем инфо о пользователе
 
 const popupEditUserInfo = new PopupWithForm({   //экз. формы редактирования профиля
   handleSubmitForm: (userData) => {
-    userInfo.setUserInfo(userData);
-    popupEditUserInfo.close();
+    console.log(userData);
+    api.editUserInfo(userData)
+    .then(() => {
+      userInfo.setUserInfo({
+        name: userData.editProfileName,   // приводим в соответствие ключи объекта т.к на сервере name & about
+        about: userData.editProFileJob    // а я изначально задал editProfileName & editProFileJob Исправлять везде очень гем
+      });
+      popupEditUserInfo.changeBtnSubmitText('Сщхранение...');
+      popupEditUserInfo.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => popupEditUserInfo.changeBtnSubmitText('Сохранить'));
   }
 },
   popupEditProfile);
@@ -67,15 +76,13 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
 
 api.getInitialCards()   //  Получаем карточки с сервера
   .then((cardsData) => {
-    console.log('карточки');
-    console.log(cardsData);
     places.renderPlace(cardsData);
   })
   .catch((err) => {
     console.log(err);
   });
 
-const places = new Section({    //    карточки из базы
+const places = new Section({    //    карточки с сервера
   renderer: (item) => {
     places.addItem(renderPlace(item));
   }

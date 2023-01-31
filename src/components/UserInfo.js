@@ -13,7 +13,7 @@ export class UserInfo {
   }
 
   setUserInfo(userData) {
-    this._userName.textContent = userData.editProfileName;
-    this._userJob.textContent = userData.editProFileJob;
+    this._userName.textContent = userData.name;
+    this._userJob.textContent = userData.about;
   }
 }

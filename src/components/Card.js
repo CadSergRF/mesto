@@ -38,6 +38,7 @@ export class Card {
 
     this._cardImage.src = this._cardData.link;
     this._cardImage.alt = this._cardData.name;
+    this.cardID = this._cardData._id;
     this._element.querySelector('.place__title').textContent = this._cardData.name;
 
 

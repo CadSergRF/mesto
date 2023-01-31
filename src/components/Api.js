@@ -12,22 +12,35 @@ export class Api {
     return Promise.reject(`Ошибка в Api: ${res.status}`); // если ошибка, отклоняем промис
   }
 
-  getInitialCards() {    //  запрос карточек
-    return fetch(`${this._baseUrl}/cards`,
-    {
-      headers: this._headers
-    })
-      .then(res => this._responceProcessing(res));
+  async getInitialCards() {    //  запрос карточек
+    const res = await fetch(`${this._baseUrl}/cards`,
+      {
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
   }
 
-  getUserInfo(res) {    //  Запрос инфо о пользователе
-    return fetch(`${this._baseUrl}/users/me`,
-    {
-      headers: this._headers
-    })
-      .then(res => this._responceProcessing(res));
+  async getUserInfo() {    //  Запрос инфо о пользователе
+    const res = await fetch(`${this._baseUrl}/users/me`,
+      {
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
+  }
+
+  async editUserInfo(userData) {
+    const res = await fetch(`${this._baseUrl}/users/me`,
+      {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({
+          name: userData.editProfileName,
+          about: userData.editProFileJob
+        })
+      });
+    return this._responceProcessing(res);
   }
 
 
-  }
+}
 
