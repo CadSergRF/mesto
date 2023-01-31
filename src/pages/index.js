@@ -19,7 +19,7 @@ profileIsValid.enableValidation();
 const newCardIsValid = new FormValidator(configValidation, formAddPlace); // экз. Валидатора для добавления карточки
 newCardIsValid.enableValidation();
 
-const api = new Api({
+const api = new Api({   // экземпляр класса Api - запросы к серверу
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
   headers: {
     authorization: '03dc3376-ddee-4eae-b74f-6570ee2c94e8',
@@ -27,43 +27,23 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-  .then((result) => {
-    console.log('карточки');
-    console.log(result);// обрабатываем результат
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
-
-  api.getUserInfo()
-  .then((result) => {
-    console.log('юзер инфо');
-    console.log(result);// обрабатываем результат
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
-
-const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
-  handleSubmitForm: (placeData) => {
-    places.addItem(renderPlace(placeData));   // добавление новой карточки через экземпляр Section
-    popupAddPlace.close();
-  }
-},
-  popupAddPlaceElem);
-
-popupAddPlace.setEventListeners();
-
-userProfileAddPlaceBtn.addEventListener('click', () => {    // Кнопка открытия формы новой карточки
-  newCardIsValid.checkOpenedPopup();
-  popupAddPlace.open();
-});
+//  ---------- ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ ----------  //
 
 const userInfo = new UserInfo({   // экз. Данные профиля
   userNameSelector: '.user-profile__name',
   userJobSelector: '.user-profile__job'
 });
+
+api.getUserInfo()   //  Пролучаем инфо о пользователе
+  .then((userData) => {
+    userInfo.setUserInfo({
+      editProfileName: userData.name,
+      editProFileJob: userData.about
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupEditUserInfo = new PopupWithForm({   //экз. формы редактирования профиля
   handleSubmitForm: (userData) => {
@@ -82,8 +62,25 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
   popupEditUserInfo.open();
 })
 
-const popupWithImage = new PopupWithImage(popupEnhanceImage);   //  экз. формы большого img
-popupWithImage.setEventListeners();
+
+//  ---------- PLACES (карточки) ----------  //
+
+api.getInitialCards()   //  Получаем карточки с сервера
+  .then((cardsData) => {
+    console.log('карточки');
+    console.log(cardsData);
+    places.renderPlace(cardsData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const places = new Section({    //    карточки из базы
+  renderer: (item) => {
+    places.addItem(renderPlace(item));
+  }
+}
+  , placesListElement);
 
 function renderPlace(item) {    // рендер карточки
   const card = new Card(item, placeTemplateElement,
@@ -96,12 +93,22 @@ function renderPlace(item) {    // рендер карточки
   return newCard;
 }
 
-const places = new Section({    //    карточки из базы
-  items: initialPlaces,
-  renderer: (item) => {
-    places.addItem(renderPlace(item));
-  }
-}
-  , placesListElement);
+// places.renderPlace();
 
-places.renderPlace();
+const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
+  handleSubmitForm: (placeData) => {
+    places.addItem(renderPlace(placeData));   // добавление новой карточки через экземпляр Section
+    popupAddPlace.close();
+  }
+},
+  popupAddPlaceElem);
+
+popupAddPlace.setEventListeners();
+
+userProfileAddPlaceBtn.addEventListener('click', () => {    // Кнопка открытия формы новой карточки
+  newCardIsValid.checkOpenedPopup();
+  popupAddPlace.open();
+});
+
+const popupWithImage = new PopupWithImage(popupEnhanceImage);   //  экз. формы большого img
+popupWithImage.setEventListeners();
