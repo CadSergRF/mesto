@@ -35,10 +35,12 @@ export class Card {
     this._cardLike = this._element.querySelector('.place__like');
     this._cardDelete = this._element.querySelector('.place__delete');
     this._cardFull = this._element.querySelector('.place');
+    this._cardNumOfLikes = this._element.querySelector('.place__num-of-likes');
 
     this._cardImage.src = this._cardData.link;
     this._cardImage.alt = this._cardData.name;
     this.cardID = this._cardData._id;
+    this._cardNumOfLikes.textContent = this._cardData.likes.length;
     this._element.querySelector('.place__title').textContent = this._cardData.name;
 
 

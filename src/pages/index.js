@@ -75,6 +75,7 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
 
 api.getInitialCards()   //  Получаем карточки с сервера
   .then((cardsData) => {
+    console.log(cardsData);
     places.renderPlace(cardsData);    // рендерим - вставляем
   })
   .catch((err) => {
@@ -107,11 +108,6 @@ const popupAddPlace = new PopupWithForm({   //  экз. формы новой к
       places.addItem(renderPlace(cardData));   // добавление новой карточки через экземпляр Section
       popupAddPlace.close();
     })
-
-
-
-
-
   }
 },
   popupAddPlaceElem);
