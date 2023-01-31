@@ -20,6 +20,20 @@ export class Api {
     return this._responceProcessing(res);
   }
 
+  async addNewCard(cardData) {    //  добавление новой карточки
+    const res = await fetch(`${this._baseUrl}/cards`,
+      {
+        method: 'POST',
+        headers: this._headers,
+        body: JSON.stringify({
+          name: cardData.name,
+          link: cardData.link
+        })
+      });
+      console.log(cardData);
+    return this._responceProcessing(res);
+  }
+
   async getUserInfo() {    //  Запрос инфо о пользователе
     const res = await fetch(`${this._baseUrl}/users/me`,
       {

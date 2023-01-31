@@ -44,14 +44,13 @@ api.getUserInfo()   //  Пролучаем инфо о пользователе
 
 const popupEditUserInfo = new PopupWithForm({   //экз. формы редактирования профиля
   handleSubmitForm: (userData) => {
-    console.log(userData);
     api.editUserInfo(userData)
     .then(() => {
       userInfo.setUserInfo({
         name: userData.editProfileName,   // приводим в соответствие ключи объекта т.к на сервере name & about
         about: userData.editProFileJob    // а я изначально задал editProfileName & editProFileJob Исправлять везде очень гем
       });
-      popupEditUserInfo.changeBtnSubmitText('Сщхранение...');
+      popupEditUserInfo.changeBtnSubmitText('Сохранение...');
       popupEditUserInfo.close();
     })
     .catch((err) => {
@@ -76,13 +75,13 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
 
 api.getInitialCards()   //  Получаем карточки с сервера
   .then((cardsData) => {
-    places.renderPlace(cardsData);
+    places.renderPlace(cardsData);    // рендерим - вставляем
   })
   .catch((err) => {
     console.log(err);
   });
 
-const places = new Section({    //    карточки с сервера
+const places = new Section({    //
   renderer: (item) => {
     places.addItem(renderPlace(item));
   }
@@ -100,12 +99,19 @@ function renderPlace(item) {    // рендер карточки
   return newCard;
 }
 
-// places.renderPlace();
-
 const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
-  handleSubmitForm: (placeData) => {
-    places.addItem(renderPlace(placeData));   // добавление новой карточки через экземпляр Section
-    popupAddPlace.close();
+  handleSubmitForm: (cardData) => {
+    api.addNewCard(cardData)
+    .then(() => {
+      console.log(cardData);
+      places.addItem(renderPlace(cardData));   // добавление новой карточки через экземпляр Section
+      popupAddPlace.close();
+    })
+
+
+
+
+
   }
 },
   popupAddPlaceElem);
