@@ -114,7 +114,6 @@ function renderPlace(item) {    // рендер карточки
         if (card.isLikedCard()) {
           api.deleteLike(cardData._id)
           .then((res) => {
-            console.log(res);
             card.changeLikesCard(res.likes);
           })
           .catch((err) => {

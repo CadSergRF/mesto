@@ -23,21 +23,23 @@ export class Card {
   }
 
   isLikedCard() {
-    if (this._cardData.likes.find((elem) => elem._id = this._userID)) {
-      console.log('LIKED');
+    if (this._cardData.likes.find((elem) => elem._id === this._userID)) {
       return true
-    } else {
-      return false
     }
   }
 
   changeLikesCard(newLikes) {
     this._cardData.likes = newLikes;
     this._cardNumOfLikes.textContent = this._cardData.likes.length;
+    if (this.isLikedCard()) {
+      this._cardLike.classList.add('place__like_active');
+    }
+    else {
+      this._cardLike.classList.remove('place__like_active');
+    }
   }
 
   _likeCard = (event) => {
-    event.stopPropagation(); // Запрет всплытия event
     this._cardLike.classList.toggle('place__like_active');
   }
 
@@ -61,6 +63,9 @@ export class Card {
 
     if (this._userID != this._cardData.owner._id) {
       this._cardDelete.remove();
+    }
+    if (this.isLikedCard()) {
+      this._cardLike.classList.add('place__like_active');
     }
 
     this._addListeners();
