@@ -92,7 +92,7 @@ const places = new Section({    //
 const popupConfirm = new Popup(popupConfirmChanges); // экз. попап подтверждения действия
 
 function renderPlace(item) {    // рендер карточки
-  const card = new Card(item, placeTemplateElement,
+  const card = new Card(item, placeTemplateElement, userInfo.getUserInfo().userID,
     {
       handleCardClick: (item) => {
         popupWithImage.open(item);

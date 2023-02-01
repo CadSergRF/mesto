@@ -14,6 +14,7 @@ export class PopupWithForm extends Popup {
     this._inputList.forEach(input => {
       this._inputValues[input.name] = input.value;
     });
+    this._inputValues.likes = [];
     return this._inputValues;
   }
 

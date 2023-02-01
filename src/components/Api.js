@@ -12,6 +12,27 @@ export class Api {
     return Promise.reject(`Ошибка в Api: ${res.status}`); // если ошибка, отклоняем промис
   }
 
+  async getUserInfo() {    //  Запрос инфо о пользователе
+    const res = await fetch(`${this._baseUrl}/users/me`,
+      {
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
+  }
+
+  async editUserInfo(userData) {    //  Редактирование профиля
+    const res = await fetch(`${this._baseUrl}/users/me`,
+      {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({
+          name: userData.editProfileName,
+          about: userData.editProFileJob
+        })
+      });
+    return this._responceProcessing(res);
+  }
+
   async getInitialCards() {    //  запрос карточек
     const res = await fetch(`${this._baseUrl}/cards`,
       {
@@ -30,28 +51,7 @@ export class Api {
           link: cardData.link
         })
       });
-      console.log(cardData);
-    return this._responceProcessing(res);
-  }
-
-  async getUserInfo() {    //  Запрос инфо о пользователе
-    const res = await fetch(`${this._baseUrl}/users/me`,
-      {
-        headers: this._headers
-      });
-    return this._responceProcessing(res);
-  }
-
-  async editUserInfo(userData) {
-    const res = await fetch(`${this._baseUrl}/users/me`,
-      {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify({
-          name: userData.editProfileName,
-          about: userData.editProFileJob
-        })
-      });
+    console.log(cardData);
     return this._responceProcessing(res);
   }
 

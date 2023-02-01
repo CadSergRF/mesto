@@ -7,7 +7,8 @@ export class UserInfo {
   getUserInfo() {
     const userData = {
       editProfileName: this._userName.textContent,
-      editProFileJob: this._userJob.textContent
+      editProFileJob: this._userJob.textContent,
+      userID: this._userID
     }
     return userData;
   }
@@ -15,5 +16,6 @@ export class UserInfo {
   setUserInfo(userData) {
     this._userName.textContent = userData.name;
     this._userJob.textContent = userData.about;
+    this._userID = userData._id;
   }
 }
