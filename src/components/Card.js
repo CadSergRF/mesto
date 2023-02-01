@@ -17,9 +17,10 @@ export class Card {
 
   _addListeners() {   //  добавляем слушатели
     this._cardLike.addEventListener('click', this._likeCard);
-    this._cardDelete.addEventListener('click', this._deleteCard);
-    this._cardFull.addEventListener('click', () => this._handleCardClick(this._cardData));
-    // this._cardDelete.addEventListener('click', (event) => this._handleCardDelete(event, this._element));
+    // this._cardDelete.addEventListener('click', this._deleteCard);
+    // this._cardFull.addEventListener('click', () => this._handleCardClick(this._cardData));
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardData));
+    this._cardDelete.addEventListener('click', () => this._handleCardDelete(this._cardData));
   }
 
   _likeCard = (event) => {
@@ -27,8 +28,7 @@ export class Card {
     this._cardLike.classList.toggle('place__like_active');
   }
 
-  _deleteCard = (event) => {
-    event.stopPropagation(); // Запрет всплытия event
+  deleteCard = () => {
     this._element.remove();
   }
 

@@ -1,5 +1,6 @@
 export const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 export const formAddPlace = document.forms.addPlace;         // Форма добавления place
+export const formConfirmChanges = document.forms.confirmChanges;
 export const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
 export const popupAddPlaceElem = document.querySelector('#add-place'); // id Popup добавление картинки
 export const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику

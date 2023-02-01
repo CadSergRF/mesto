@@ -55,6 +55,15 @@ export class Api {
     return this._responceProcessing(res);
   }
 
+  async deleteCard(cardID) {    //  удаление карточки
+    const res = await fetch(`${this._baseUrl}/cards/${cardID}`,
+      {
+        method: 'DELETE',
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
+  }
+
 
 }
 

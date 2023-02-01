@@ -1,7 +1,7 @@
 import './index.css'; //  импорт объединенных стилей
 import { configValidation } from '../utils/configs.js';   //  конфиг валидации
 import {
-  formEditProfile, formAddPlace, popupEditProfile, popupAddPlaceElem, popupEnhanceImage,
+  formEditProfile, formAddPlace, formConfirmChanges, popupEditProfile, popupAddPlaceElem, popupEnhanceImage,
   placeTemplateElement, userProfileEditBtn, userProfileAddPlaceBtn, placesListElement, popupConfirmChanges
 } from '../utils/pageElements.js';  // forms, Id , selectors
 import { Card } from '../components/Card.js';
@@ -12,6 +12,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Api } from '../components/Api';
 import { Popup } from '../components/Popup';
+import { PopupWithConfirm } from '../components/PopupWithConfirm';
 // import { Api } from '../components/Api.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
@@ -89,7 +90,9 @@ const places = new Section({    //
 }
   , placesListElement);
 
-const popupConfirm = new Popup(popupConfirmChanges); // экз. попап подтверждения действия
+const popupConfirm = new PopupWithConfirm(popupConfirmChanges);
+
+popupConfirm.setEventListeners();
 
 function renderPlace(item) {    // рендер карточки
   const card = new Card(item, placeTemplateElement, userInfo.getUserInfo().userID,
@@ -97,10 +100,19 @@ function renderPlace(item) {    // рендер карточки
       handleCardClick: (item) => {
         popupWithImage.open(item);
       },
-      handleCardDelete: (event, item) => {
-        event.stopPropagation();
+      handleCardDelete: (cardID) => {
+        // popupConfirm.open(cardID);
         popupConfirm.open();
-        popupConfirm.setEventListeners();
+        popupConfirm.handleSubmit(() => {
+          console.log('Получилось');
+          console.log(cardID);
+          api.deleteCard(cardID._id)
+          .then(() => {
+            card.deleteCard();
+            popupConfirm.close();
+          })
+        })
+        // })
       }
     });
   const newCard = card.createCard();
