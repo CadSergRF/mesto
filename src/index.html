@@ -18,8 +18,9 @@
   <main class="root__container">
     <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
-      <img class="user-profile__photo" src="<%=require('./img/avatar.jpg')%>" alt="Аватар">
-
+      <div class="user-profile__avatar-wrapper">
+        <img class="user-profile__photo" src="<%=require('./img/avatar.jpg')%>" alt="Аватар">
+      </div>
       <div class="user-profile__info-wrapper">
         <h1 class="user-profile__name">Жак-Ив Кусто</h1>
         <button class="user-profile__edit" type="button" aria-label="Кнопка редактирования профиля"></button>
