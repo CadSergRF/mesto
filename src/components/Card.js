@@ -1,10 +1,11 @@
 export class Card {
-  constructor(cardData, template, userID, { handleCardClick, handleCardDelete }) {
+  constructor(cardData, template, userID, { handleCardClick, handleCardDelete, handleCardLike }) {
     this._cardData = cardData;    //  объект отдельной карточки
     this.template = template;
     this._userID = userID;
     this._handleCardClick = handleCardClick;    //  функция попап изображения
     this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
   }
 
   _getTemplate() {    //  клонируем шаблон
@@ -16,11 +17,23 @@ export class Card {
   }
 
   _addListeners() {   //  добавляем слушатели
-    this._cardLike.addEventListener('click', this._likeCard);
-    // this._cardDelete.addEventListener('click', this._deleteCard);
-    // this._cardFull.addEventListener('click', () => this._handleCardClick(this._cardData));
+    this._cardLike.addEventListener('click', () => this._handleCardLike(this._cardData));
     this._cardImage.addEventListener('click', () => this._handleCardClick(this._cardData));
     this._cardDelete.addEventListener('click', () => this._handleCardDelete(this._cardData));
+  }
+
+  isLikedCard() {
+    if (this._cardData.likes.find((elem) => elem._id = this._userID)) {
+      console.log('LIKED');
+      return true
+    } else {
+      return false
+    }
+  }
+
+  changeLikesCard(newLikes) {
+    this._cardData.likes = newLikes;
+    this._cardNumOfLikes.textContent = this._cardData.likes.length;
   }
 
   _likeCard = (event) => {
@@ -49,8 +62,6 @@ export class Card {
     if (this._userID != this._cardData.owner._id) {
       this._cardDelete.remove();
     }
-
-
 
     this._addListeners();
 

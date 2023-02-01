@@ -51,7 +51,6 @@ export class Api {
           link: cardData.link
         })
       });
-    console.log(cardData);
     return this._responceProcessing(res);
   }
 
@@ -64,6 +63,23 @@ export class Api {
     return this._responceProcessing(res);
   }
 
+  // ЛАЙКИ //
+  async addLike(cardID) {    //  удаление карточки
+    const res = await fetch(`${this._baseUrl}/cards/${cardID}/likes`,
+      {
+        method: 'PUT',
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
+  }
 
+  async deleteLike(cardID) {    //  удаление карточки
+    const res = await fetch(`${this._baseUrl}/cards/${cardID}/likes`,
+      {
+        method: 'DELETE',
+        headers: this._headers
+      });
+    return this._responceProcessing(res);
+  }
 }
 

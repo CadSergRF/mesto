@@ -1,7 +1,7 @@
 import './index.css'; //  импорт объединенных стилей
 import { configValidation } from '../utils/configs.js';   //  конфиг валидации
 import {
-  formEditProfile, formAddPlace, formConfirmChanges, popupEditProfile, popupAddPlaceElem, popupEnhanceImage,
+  formEditProfile, formAddPlace, popupEditProfile, popupAddPlaceElem, popupEnhanceImage,
   placeTemplateElement, userProfileEditBtn, userProfileAddPlaceBtn, placesListElement, popupConfirmChanges
 } from '../utils/pageElements.js';  // forms, Id , selectors
 import { Card } from '../components/Card.js';
@@ -10,10 +10,8 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { Api } from '../components/Api';
-import { Popup } from '../components/Popup';
-import { PopupWithConfirm } from '../components/PopupWithConfirm';
-// import { Api } from '../components/Api.js';
+import { Api } from '../components/Api.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 
 const profileIsValid = new FormValidator(configValidation, formEditProfile); // экз. Валидатора для профиля
 profileIsValid.enableValidation();
@@ -83,15 +81,14 @@ api.getInitialCards()   //  Получаем карточки с сервера
     console.log(err);
   });
 
-const places = new Section({    //
+const places = new Section({    //  секция карточек
   renderer: (item) => {
     places.addItem(renderPlace(item));
   }
 }
   , placesListElement);
 
-const popupConfirm = new PopupWithConfirm(popupConfirmChanges);
-
+const popupConfirm = new PopupWithConfirm(popupConfirmChanges);   //  попап подтверждения
 popupConfirm.setEventListeners();
 
 function renderPlace(item) {    // рендер карточки
@@ -100,19 +97,37 @@ function renderPlace(item) {    // рендер карточки
       handleCardClick: (item) => {
         popupWithImage.open(item);
       },
-      handleCardDelete: (cardID) => {
-        // popupConfirm.open(cardID);
+      handleCardDelete: (cardData) => {
         popupConfirm.open();
         popupConfirm.handleSubmit(() => {
-          console.log('Получилось');
-          console.log(cardID);
-          api.deleteCard(cardID._id)
+          api.deleteCard(cardData._id)
           .then(() => {
             card.deleteCard();
             popupConfirm.close();
           })
+          .catch((err) => {
+            console.log(err);
+          });
         })
-        // })
+      },
+      handleCardLike: (cardData) => {
+        if (card.isLikedCard()) {
+          api.deleteLike(cardData._id)
+          .then((res) => {
+            console.log(res);
+            card.changeLikesCard(res.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        }
+        else {
+          api.addLike(cardData._id)
+          .then((res) => card.changeLikesCard(res.likes))
+          .catch((err) => {
+            console.log(err);
+          });
+        }
       }
     });
   const newCard = card.createCard();
@@ -122,11 +137,13 @@ function renderPlace(item) {    // рендер карточки
 const popupAddPlace = new PopupWithForm({   //  экз. формы новой карточки
   handleSubmitForm: (cardData) => {
     api.addNewCard(cardData)
-      .then(() => {
-        console.log(cardData);
-        places.addItem(renderPlace(cardData));   // добавление новой карточки через экземпляр Section
+      .then((res) => {
+        places.addItem(renderPlace(res));   // добавление новой карточки через экземпляр Section
         popupAddPlace.close();
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 },
   popupAddPlaceElem);
