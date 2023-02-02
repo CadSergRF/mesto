@@ -28,6 +28,18 @@ const api = new Api({   // экземпляр класса Api - запросы 
   }
 });
 
+//  ---------- ЗАПРОС НАЧАЛЬНЫХ ДАННЫХ С СЕРВЕРА ----------  //
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardsData]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    places.renderPlace(cardsData);    // рендерим - вставляем
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 //  ---------- ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ ----------  //
 
 const userInfo = new UserInfo({   // экз. Данные профиля
@@ -35,15 +47,6 @@ const userInfo = new UserInfo({   // экз. Данные профиля
   userJobSelector: '.user-profile__job',
   userAvatarSelector: '.user-profile__photo'
 });
-
-api.getUserInfo()   //  Пролучаем инфо о пользователе
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    userInfo.setUserAvatar(userData);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 const popupEditUserInfo = new PopupWithForm({   //экз. формы редактирования профиля
   handleSubmitForm: (userData) => {
@@ -95,14 +98,6 @@ userAvatarEditBtn.addEventListener('click', () => {   //  Аватар слуш�
 
 //  ---------- PLACES (карточки) ----------  //
 
-api.getInitialCards()   //  Получаем карточки с сервера
-  .then((cardsData) => {
-    places.renderPlace(cardsData);    // рендерим - вставляем
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 const places = new Section({    //  секция карточек
   renderer: (item) => {
     places.addItem(renderPlace(item));
@@ -114,7 +109,7 @@ const popupConfirm = new PopupWithConfirm(popupConfirmChanges);   //  попап
 popupConfirm.setEventListeners();
 
 function renderPlace(item) {    // рендер карточки
-  const card = new Card(item, placeTemplateElement, userInfo.getUserInfo().userID,
+  const card = new Card(item, placeTemplateElement, userInfo.getUserID(),
     {
       handleCardClick: (item) => {
         popupWithImage.open(item);

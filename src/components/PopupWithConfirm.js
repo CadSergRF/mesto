@@ -1,10 +1,10 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithConfirm extends Popup {
-  constructor(popupSelector) {
-    super(popupSelector);
-    this._form = this._popupSelector.querySelector('.popup__form');
-    this._btnSubmit = this._form.querySelector('.popup__save-btn');
+  constructor(popupElement) {
+    super(popupElement);
+    this._form = this._popupElement.querySelector('.popup__form');
+    this._btnSubmit = this._form.querySelector('.popup__save-btn'); // Нужна для вызова changeBtnSubmitText(text) из Popup
   }
 
   handleSubmit(newSubmit) {
