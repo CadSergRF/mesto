@@ -77,7 +77,7 @@ const popupEditUserAvatar = new PopupWithForm({   //экз. формы изме�
       .finally(() => popupEditUserInfo.changeBtnSubmitText('Сохранить'));
   }
 },
-popupEditAvatar);
+  popupEditAvatar);
 
 popupEditUserAvatar.setEventListeners();
 
@@ -124,32 +124,32 @@ function renderPlace(item) {    // рендер карточки
         popupConfirm.handleSubmit(() => {
           popupConfirm.changeBtnSubmitText('Удаление...')
           api.deleteCard(cardData._id)
-          .then(() => {
-            card.deleteCard();
-            popupConfirm.close();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(() => popupConfirm.changeBtnSubmitText('Да'));
+            .then(() => {
+              card.deleteCard();
+              popupConfirm.close();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+            .finally(() => popupConfirm.changeBtnSubmitText('Да'));
         })
       },
       handleCardLike: (cardData) => {
         if (card.isLikedCard()) {
           api.deleteLike(cardData._id)
-          .then((res) => {
-            card.changeLikesCard(res.likes);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            .then((res) => {
+              card.changeLikesCard(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
         else {
           api.addLike(cardData._id)
-          .then((res) => card.changeLikesCard(res.likes))
-          .catch((err) => {
-            console.log(err);
-          });
+            .then((res) => card.changeLikesCard(res.likes))
+            .catch((err) => {
+              console.log(err);
+            });
         }
       }
     });
