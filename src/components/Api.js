@@ -33,6 +33,18 @@ export class Api {
     return this._responceProcessing(res);
   }
 
+  async editUserAvatar(link) {    //  Редактирование аватара пользователя
+    const res = await fetch(`${this._baseUrl}/users/me/avatar`,
+      {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({
+          avatar: link
+        })
+      });
+    return this._responceProcessing(res);
+  }
+
   async getInitialCards() {    //  запрос карточек
     const res = await fetch(`${this._baseUrl}/cards`,
       {

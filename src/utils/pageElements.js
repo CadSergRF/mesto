@@ -1,11 +1,14 @@
 export const formEditProfile = document.forms.editProfile;   // Форма редактирования профиля
 export const formAddPlace = document.forms.addPlace;         // Форма добавления place
+export const formEditAvatar = document.forms.editAvatar;         // Форма редактирования аватара
 export const formConfirmChanges = document.forms.confirmChanges;
 export const popupEditProfile = document.querySelector('#edit-profile'); // id Popup редактирования профиля пользователя
+export const popupEditAvatar = document.querySelector('#edit-avatar'); // id Popup редактирования аватара пользователя
 export const popupAddPlaceElem = document.querySelector('#add-place'); // id Popup добавление картинки
 export const popupEnhanceImage = document.querySelector('#enhance-image'); // id Popup увеличение картинки по клику
 export const popupConfirmChanges = document.querySelector('#confirm-popup'); // id Popup подтверждения действия
 export const placeTemplateElement = document.querySelector('#placeTemplate').content; // id шаблон карточки place
 export const userProfileEditBtn = document.querySelector('.user-profile__edit'); // Кнопка открытия popup редактирования профиля пользователя
+export const userAvatarEditBtn = document.querySelector('.user-profile__avatar-wrapper'); // Кнопка открытия popup редактирования аватара пользователя
 export const userProfileAddPlaceBtn = document.querySelector('.user-profile__add-place'); //Кнопка добавления нового place
 export const placesListElement = document.querySelector('.places__list'); // Область добавления карточек place

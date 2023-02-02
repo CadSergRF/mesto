@@ -20,6 +20,10 @@ export class Popup {
     }
   };
 
+  changeBtnSubmitText(text) {
+    this._btnSubmit.textContent = text;
+  }
+
   setEventListeners() {
     const popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');   //закрытие на крест
     popupCloseBtn.addEventListener('click', () => {

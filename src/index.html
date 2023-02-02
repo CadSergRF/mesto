@@ -19,12 +19,15 @@
     <!-- профиль пользователя -->
     <section class="user-profile root__user-profile">
       <div class="user-profile__avatar-wrapper">
-        <img class="user-profile__photo" src="<%=require('./img/avatar.jpg')%>" alt="Аватар">
+        <img class="user-profile__photo" alt="Аватар">
+        <!-- src="<%=require('./img/avatar.jpg')%>"  -->
       </div>
       <div class="user-profile__info-wrapper">
-        <h1 class="user-profile__name">Жак-Ив Кусто</h1>
+        <h1 class="user-profile__name"></h1>
+        <!-- Жак-Ив Кусто -->
         <button class="user-profile__edit" type="button" aria-label="Кнопка редактирования профиля"></button>
-        <p class="user-profile__job">Исследователь океана</p>
+        <p class="user-profile__job"></p>
+        <!-- Исследователь океана -->
       </div>
 
       <button class="user-profile__add-place" type="button" aria-label="Кнопка добавления контента"></button>
@@ -70,6 +73,19 @@
           required>
         <span class="popup__input-error link-error"></span>
         <button class="popup__save-btn" type="submit" aria-label="Кнопка сохранить изменения">Создать</button>
+      </form>
+    </div>
+  </div>
+  <!-- Попап "Изменение аватара"-->
+  <div class="popup" id="edit-avatar">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия окна добавления контента"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form" name="editAvatar">
+        <input class="popup__input popup__input_place_link" type="URL" placeholder="Ссылка на картинку" name="link"
+          required>
+        <span class="popup__input-error link-error"></span>
+        <button class="popup__save-btn" type="submit" aria-label="Кнопка сохранить изменения">Сохранить</button>
       </form>
     </div>
   </div>

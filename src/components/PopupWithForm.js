@@ -18,7 +18,7 @@ export class PopupWithForm extends Popup {
     return this._inputValues;
   }
 
-  setInputValues(data) {
+  setInputValues(data) {    //  Устанавливаем значения
     this._inputList.forEach( input => {
       input.value = data[input.name];
     });
@@ -30,10 +30,6 @@ export class PopupWithForm extends Popup {
       this._handleSubmitForm(this._getInputValues());
     });
     super.setEventListeners();
-  }
-
-  changeBtnSubmitText(text) {
-    this._btnSubmit.textContent = text;
   }
 
   close() {
