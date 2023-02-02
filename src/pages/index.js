@@ -49,11 +49,8 @@ const popupEditUserInfo = new PopupWithForm({   //экз. формы редак�
   handleSubmitForm: (userData) => {
     popupEditUserInfo.changeBtnSubmitText('Сохранение...');
     api.editUserInfo(userData)
-      .then(() => {
-        userInfo.setUserInfo({
-          name: userData.editProfileName,   // приводим в соответствие ключи объекта т.к на сервере name & about
-          about: userData.editProFileJob    // а я изначально задал editProfileName & editProFileJob Исправлять везде очень гем
-        });
+      .then((res) => {
+        userInfo.setUserInfo(res);
         popupEditUserInfo.close();
       })
       .catch((err) => {
@@ -90,7 +87,7 @@ userProfileEditBtn.addEventListener('click', () => {    // Кнопка откр
   popupEditUserInfo.open();
 })
 
-userAvatarEditBtn.addEventListener('click', () => {
+userAvatarEditBtn.addEventListener('click', () => {   //  Аватар слушатель на редактирование
   newAvatarLinkIsValid.checkOpenedPopup();
   popupEditUserAvatar.open();
 })

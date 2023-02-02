@@ -39,10 +39,6 @@ export class Card {
     }
   }
 
-  _likeCard = (event) => {
-    this._cardLike.classList.toggle('place__like_active');
-  }
-
   deleteCard = () => {
     this._element.remove();
   }
@@ -50,6 +46,7 @@ export class Card {
   createCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.place__image');
+    this._cardTitle = this._element.querySelector('.place__title');
     this._cardLike = this._element.querySelector('.place__like');
     this._cardDelete = this._element.querySelector('.place__delete');
     this._cardFull = this._element.querySelector('.place');
@@ -58,13 +55,13 @@ export class Card {
     this._cardImage.src = this._cardData.link;
     this._cardImage.alt = this._cardData.name;
     this.cardID = this._cardData._id;
-    this._element.querySelector('.place__title').textContent = this._cardData.name;
+    this._cardTitle.textContent = this._cardData.name;
     this._cardNumOfLikes.textContent = this._cardData.likes.length;
 
-    if (this._userID != this._cardData.owner._id) {
+    if (this._userID != this._cardData.owner._id) {   // Удаляем корзину если не своя карточка
       this._cardDelete.remove();
     }
-    if (this.isLikedCard()) {
+    if (this.isLikedCard()) {   //  Отображаем лайк если он был
       this._cardLike.classList.add('place__like_active');
     }
 
