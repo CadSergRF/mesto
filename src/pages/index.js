@@ -100,7 +100,7 @@ userAvatarEditBtn.addEventListener('click', () => {   //  Аватар слуш�
 
 const places = new Section({    //  секция карточек
   renderer: (item) => {
-    places.addItem(renderPlace(item));
+    places.addItemFromServer(renderPlace(item));
   }
 }
   , placesListElement);
