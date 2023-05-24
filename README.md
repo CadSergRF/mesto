@@ -46,7 +46,7 @@ HTML-разметка и файловая структура сделана на
 ---
 ## Ссылки:
 - Frontend: https://cadsergrf.github.io/mesto/
-### Репозиторий проекта: https://github.com/CadSergRF/mesto
+- Репозиторий проекта: https://github.com/CadSergRF/mesto
 
 ## Автор
 
